@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+{% load static %}
+    {% block sidebar %}
+    <form action="{% url 'flashscoreapp:registarutilizador'%}" method="post" enctype="multipart/form-data" class="login">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'flashscoreapp/style.css' %}" />
+    {% csrf_token %}
+        Nome:<br><input type="text" id="name" name="name" required><br><br>
+        <select id="equipaDoJogador" name="equipaDoJogador" required>
+            <option value="" disabled selected>Escolha a Equipa</option>
+            {% for equipa in equipas %}
+            <option value="{{ equipa.id }}">{{ equipa.nomeDaEquipa }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        Password:<br><input type="password" id="password" name="password" required><br><br>
+        Número:<br><input type="number" id="nrDoJogador" name="nrDoJogador"><br><br>
+        dataDeNascimento:<br><input type="date" id="dataDeNascimento" name="dataDeNascimento"><br><br>
+
+        <select id="nacionalidadedoJogador" name="nacionalidadedoJogador" >
+            <option value="" disabled selected>Escolha a Nacionalidade</option>
+            {% for nacionalidade in nacionalidades %}
+            <option value="{{ nacionalidade.id }}">{{ nacionalidade.nacionalidadeNome }}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Save" style="margin-top: 10px;">
+   </form>
+ <br>
+
+<form action="{% url 'flashscoreapp:index'  %}" id="botaomenu">
+        <button>Menu Principal</button>
+    </form>
+
+{% endblock %}
+
+</body>
+</html>

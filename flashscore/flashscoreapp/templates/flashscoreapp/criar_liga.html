@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block sidebar %}
+    <h1>Criar Nova Liga</h1>
+    <form method="post" action="{% url 'flashscoreapp:salvar_liga' %}">
+        {% csrf_token %}
+        Nome da Liga:<br><input type="text" id="nomeDaLiga" name="nomeDaLiga" required><br><br>
+        Número Max de Equipas:<br><input type="number" id="nrMaxEquipasDaLiga" name="nrMaxEquipasDaLiga" required><br><br>
+
+
+        <input type="submit" value="Save" style="margin-top: 10px;">
+
+    </form>
+{% endblock %}
+</body>
+</html>
