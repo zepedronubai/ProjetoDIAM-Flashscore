@@ -3,8 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 import datetime
 
-# Create your models here.
-
 class Nacionalidade(models.Model):
     pais = models.CharField(max_length=200)
     nacionalidadeNome = models.CharField(max_length=200)
@@ -22,7 +20,7 @@ class Equipa(models.Model):
     logoDaEquipa = models.CharField(default="",max_length=1000)
 
 class Jogador(models.Model):
-    nomeDoJogador = models.CharField(max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nrDoJogador = models.IntegerField()
     dataDeNascimento = models.DateTimeField()
     nacionalidadedoJogador = models.ForeignKey(Nacionalidade, on_delete=models.CASCADE)

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body>
+{% load static %}
+
+{% block sidebar %}
+
+        <img id="user-image" src="{% static 'flashscoreapp/images/'%}{{ user.id }}.png">
+        <div id="user-info">
+            <h1>{{ request.user.username }}</h1>
+
+        </div>
+
+    <br>
+<div class="parent-container">
+    <form action="{% url 'flashscoreapp:index'  %}" id="botaomenu">
+        <button>Menu Principal</button>
+    </form>
+    <form action="{% url 'flashscoreapp:fazer_upload'  %}" id="botaoupload">
+        <button>Upload</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+</body>
+</html>

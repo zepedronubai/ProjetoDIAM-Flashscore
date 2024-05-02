@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block sidebar %}
+
+    <form action="{% url 'flashscoreapp:login_view'%}"method="post" enctype="multipart/form-data" class="login">
+    {% load static %}
+    <link rel="stylesheet   " type="text/css"
+     href="{% static 'flashscoreapp/style.css' %}" />
+    {% csrf_token %}
+        Nome:<br><input type="text" id= "name" name="name"><br>
+        Password:<br><input type="password" id= "password" name="password"><br>
+        <input type="submit" value="Log in" style="margin-top: 10px;">
+        <br> <br>
+
+
+   </form>
+    <form action="{% url 'flashscoreapp:registarutilizador'  %}" id="registarbutton">
+        <button>Registar</button>
+        </form>
+
+    <br>
+
+<form action="{% url 'flashscoreapp:index'  %}" id="botaomenu">
+        <button>Menu Principal</button>
+    </form>
+    {% endblock %}
+
+
+
+
+
+</body>
+</html>

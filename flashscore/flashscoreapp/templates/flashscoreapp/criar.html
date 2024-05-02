@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block sidebar %}
+    <h1>Criar Nova Equipa</h1>
+    <form method="post" action="{% url 'flashscoreapp:salvar_equipa' %}">
+        {% csrf_token %}
+        Nome da Equipa:<br><input type="text" id="nomeDaEquipa" name="nomeDaEquipa" required><br><br>
+        Sigla:<br><input type="text" id="sigla" name="sigla" required><br><br>
+
+
+        <select id="liga" name="liga" >
+            <option value="" disabled selected>Escolha a Liga</option>
+            {% for liga in ligas %}
+            <option value="{{ liga.id }}">{{ liga.nomeDaEquipa }}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Save" style="margin-top: 10px;">
+
+    </form>
+{% endblock %}
+</body>
+</html>

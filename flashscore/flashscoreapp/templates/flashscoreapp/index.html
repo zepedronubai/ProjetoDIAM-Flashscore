@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashscore App</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+ <div class="dropdown1">
+       <a id="showLink" class="welcome" onclick="showImage()">{{ user.username | upper}} &#9662;</a>
+       <br>
+         <a href="{% url 'flashscoreapp:paginapessoal' %}" class="welcome">Pagina Pessoal &#9662;</a>
+        <div class="dropdown-content">
+            <a href="{%  url 'flashscoreapp:logout_view' %}">Logout</a>
+{% endif %}
+    {% if ligas %}
+        <section style="display: flex;">
+        {% for liga in ligas%}
+        <section style="margin-left: 5%;">
+            <h1>{{liga.nomeDaLiga}}</h1>
+            <img src={{liga.logoDaLiga}} width="100">
+            
+                <section>
+                {% for equipa in liga.equipa_set.all %}
+                    <h2>{{equipa.sigla }} - {{equipa.nomeDaEquipa}}</h2>
+
+
+
+                {% endfor %}
+                </section>
+        </section>   
+        {% endfor %}
+        </section>
+    {% endif %}
+
+{% if not user.is_authenticated %}
+    <a href="{% url 'flashscoreapp:login_view' %}" class="loginbutton">Login</a>
+    <a href="{% url 'flashscoreapp:registarutilizador' %}" class="register">Register</a>
+{% endif %}
+
+            <ul>
+            <a href="{% url 'flashscoreapp:criar' %}">
+                <input type="submit" value="Criar Nova Equipa" />
+            </a>
+        </ul>
+            <ul>
+            <a href="{% url 'flashscoreapp:criar_liga' %}">
+                <input type="submit" value="Criar Nova Liga" />
+            </a>
+        </ul>
+
+</body>
+</html>
