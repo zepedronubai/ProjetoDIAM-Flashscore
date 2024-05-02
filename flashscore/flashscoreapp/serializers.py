@@ -23,15 +23,18 @@ class JogadorSerializer(serializers.ModelSerializer):
         fields = ('id','nomeDoJogador', 'nrDoJogador', 'dataDeNascimento', 'nacionalidadedoJogador', 'equipaDoJogador', 'fotoDoJogador')
 
 class JogoSerializer(serializers.ModelSerializer):
+    equipaDaCasa = EquipaSerializer()
+    equipaDeFora = EquipaSerializer()
     class Meta:
         model = Jogo
-        fields = ('id','equipaDaCasa', 'equipaDeFora', 'horaDoJogo')
+        fields = ('id','equipaDaCasa','liga' ,'equipaDeFora','horaDoJogo')
 
     def validate(self, data):
         equipa_casa = data['equipaDaCasa']
         equipa_fora = data['equipaDeFora']
+        liga = data['liga']
         
         # Verifica se as ligas das equipas são iguais
-        if equipa_casa.liga != equipa_fora.liga:
+        if equipa_casa.liga != equipa_fora.liga or equipa_casa.liga!=liga or equipa_fora.liga!=liga :
             raise ValidationError("As ligas das equipas devem ser iguais.")
         return data

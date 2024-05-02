@@ -15,14 +15,15 @@
     justify-content: space-around;
     padding: 0 10vw;
     padding-top: 20px;
-    height: 60vh;
+    height: 1000px;
 }
 
 .mainSection{
     min-width: 40vw;
+    height: auto;
     align-content: flex-start;
     text-align: center;
-    
+    justify-content: center;
 }
 
 .dataChanger {
@@ -58,9 +59,77 @@
 
 .jogosAtivos{
     margin-top: 20px;
+    border-radius: 6px;
     height: 50vh;
     background-color: var(--cinzaescuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.cadaLigaComJogosContainer{
+    font-size:larger;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+    
+}
+
+.nomeDaLiga{
+    margin-bottom: 1%;
+    color: white;
+}
+
+.jogoContainer{
+    display: flex;
+    background-color: var(--cinzabranco);
+    padding: 3%;
+    margin: 1% 0;
+    border-radius: 6px;
+    width: 85%;
+    max-height: 10%;
+    height: auto;
+    justify-content: space-around;
+}
+
+.jogoContainer h4{
+    margin: 0 2%;
+}
+
+.horaDoJogo{
+    font-size:medium;
+    align-self: center;
+    justify-content: center;
+}
+
+.equipasDoJogoLeft{
+    font-weight: 100;
+    width: 50%;
+    min-width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    align-items: center;
+    padding: 0 5%;
+    
+}
+.equipasDoJogoRight{
+    display: flex;
+    width: 50%;
+    min-width: 20%;
+    justify-content: flex-start;
+    flex-grow: 1;
+    align-items: center;
+    padding: 0 5%;
+    
+}
+
+.equipasDoJogo h4{
+    
+}
+
 
 
 .leftSection{
@@ -71,6 +140,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 50%;
 }
 
 
@@ -92,7 +162,8 @@
     border-radius: 6px;
     margin: 5px 0;
     width: 85%;
-    height: 30px;
+    min-height: 7%;
+    height: auto;
 }
 
 .rightSection{

@@ -29,6 +29,6 @@ class Jogador(models.Model):
 class Jogo(models.Model):
     equipaDaCasa = models.ForeignKey(Equipa, on_delete=models.CASCADE, related_name='jogos_casa')
     equipaDeFora = models.ForeignKey(Equipa, on_delete=models.CASCADE,  related_name='jogos_fora')
-    liga = models.ForeignKey(Liga, on_delete=models.CASCADE,  default="")
+    liga = models.ForeignKey(Liga, on_delete=models.CASCADE, default=1)
     horaDoJogo = models.DateTimeField()
 

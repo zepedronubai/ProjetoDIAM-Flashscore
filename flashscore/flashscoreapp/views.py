@@ -109,6 +109,32 @@ def jogos(request):
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def ligasEJogos(request):
+    date_param = request.GET.get('date', None)
+    if date_param is None:
+        return Response("Date parameter is required", status=status.HTTP_400_BAD_REQUEST)
+    try:
+        # Parse date parameter string to a datetime object
+        target_date = timezone.datetime.strptime(date_param, '%Y-%m-%d').date()
+    except ValueError:
+        return Response("Invalid date format", status=status.HTTP_400_BAD_REQUEST)
+    
+    ligas = Liga.objects.all()
+    data = []
+    for liga in ligas:
+        jogosDaLiga = Jogo.objects.filter(liga=liga, horaDoJogo__date=target_date)
+        if (len(jogosDaLiga)>0):
+            serializer = JogoSerializer(jogosDaLiga, many=True)
+            liga_data = {
+                'nomeDaLiga': liga.nomeDaLiga,
+                'jogosDaLiga': serializer.data
+            }
+            data.append(liga_data)
+
+    return Response(data)
+    
 class LoginView(APIView):
     def post(self, request):
 

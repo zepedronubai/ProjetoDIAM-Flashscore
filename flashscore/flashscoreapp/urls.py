@@ -39,4 +39,5 @@ urlpatterns = [
     path("equipas", views.equipas),
     path("jogadores", views.jogadores),
     path("jogos", views.jogos),
+    path("ligasejogos",views.ligasEJogos),
 ]
