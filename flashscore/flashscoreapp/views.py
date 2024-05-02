@@ -122,6 +122,21 @@ class LoginView(APIView):
              return JsonResponse({'error': 'Credenciais inválidas'}, status=400)
 
 
+
+
+class LoginView(APIView):
+    def post(self, request):
+
+         username = request.data.get('username')
+         password = request.data.get('password')
+         user = authenticate(username=username, password=password)
+         if user:
+            token, _ = Token.objects.get_or_create(user=user)
+            return JsonResponse({'token': token.key})
+         else:
+             return JsonResponse({'error': 'Credenciais inválidas'}, status=400)
+
+
 def registarutilizador(request):
     nacionalidade = Nacionalidade.objects.all
     equipa = Equipa.objects.all
