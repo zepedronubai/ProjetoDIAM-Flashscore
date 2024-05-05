@@ -19,6 +19,7 @@
 }
 
 .mainSection{
+    margin: 0 2%;
     min-width: 40vw;
     height: auto;
     align-content: flex-start;

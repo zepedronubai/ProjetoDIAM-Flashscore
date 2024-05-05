@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+}
+
+.mainSection{
+    width: 40vw;
+
+    flex-direction: column;
+}
+
+.ligaName{
+    margin: auto;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    background-color: var(--cinzaescuro);
+    height: 100px;
+    border-radius: 6px;
+    color: white;
+    padding-left: 2%;
+}
+
+.ligaName img{
+    float: left;
+}
+
+.ligaName h1{
+    font-weight: 700;
+    margin-left: 1%;
+}
+
+.botoes{
+    
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+    margin-top: 10px;
+    width: 20vw;
+}
+
+.botoes button{
+    font-weight: 600;
+    background-color: var(--cinzaescuro);
+    color: white;
+    width: 100px;
+    height: 25px;
+    min-width: fit-content;
+    border-radius: 6px;
+    margin: 0;
+    margin: 0 5%;
+    border: 0;
+}
+
+.equipas{
+    height: 50vh;
+    background-color: var(--cinzaescuro);
+    margin-top: 10px;
+    border-radius: 6px;
+    color: white;
+}
+
+.nomesColunas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8%;
+    font-size: 16px;
+}
+
+.firstNome{
+    display: flex;
+    justify-content: flex-start;
+    order: -1;
+    flex-grow: 1;
+    min-width: 40%;
+}
+
+.restoNomes{
+    display: flex;
+    width: 21%;
+    justify-content: space-between;
+}
+
+.nomeToPutMaring{
+    padding-left: 2%;
+}
+
+
+.equipaDiv{
+    padding: 0 8%;
+    display: flex;
+    
+    justify-content: space-between;;
+    margin: 1% 0;
+}
+
+.posiFotoENomeEquipa{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.equipaDiv p{
+    font-size: 18px;
+
+}
+
+.posiFotoENomeEquipa img{
+    padding-left: 4%;
+}
+
+.nomeEquipa{
+    margin-left: 4%;
+}
+
+.restoInfoEquipa{
+    display: flex;
+    width: 18%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+    .nomeToPutMaringg{
+        
+    }
+
+    .nomeToPutMaringgg{
+        
+    }

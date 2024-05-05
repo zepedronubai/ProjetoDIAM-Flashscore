@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import axios from 'axios';
+import Ligas from './Ligas';
+import RightSection from './Rightsection';
 
 function Homepage(){
 
@@ -22,17 +24,12 @@ function Homepage(){
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     };
-
-    
-
-    
-
-    
+ 
 
     return(
         <>
             <div className="allStuffContainer">
-                <LeftSection/>
+                <Ligas/>
                 <MainSection/>
                 <RightSection/>
             </div>
@@ -115,32 +112,8 @@ function MainSection(){
     )
 }
 
-function LeftSection(){
-    if(ligas.length>0)
-        return(
-            <div className="leftSection">
-                <h2>Ligas</h2>
-                    {ligas.map((l)=>
-                    <div className='ligaContainer'><p>{l.nomeDaLiga}</p></div>
-                    
-                    )}
-            </div>
-        )
-    else
-        return(
-            <div className="leftSection">
-            <h2>Tao</h2>
-        </div>
-    )
-}
 
-function RightSection(){
-    return(
-        <div className="rightSection">
-            <h2>Right Section</h2>
-        </div>
-    )
-}
+
 
 }
 export default Homepage;

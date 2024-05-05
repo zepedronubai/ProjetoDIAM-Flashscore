@@ -15,12 +15,12 @@ class LigaSerializer(serializers.ModelSerializer):
 class EquipaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Equipa
-        fields = ('id','nomeDaEquipa', 'sigla', 'liga', 'logoDaEquipa')
+        fields = ('id','nomeDaEquipa', 'sigla', 'liga', 'logoDaEquipa','pontos','golos','golosSofridos')
 
 class JogadorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Jogador
-        fields = ('id','nomeDoJogador', 'nrDoJogador', 'dataDeNascimento', 'nacionalidadedoJogador', 'equipaDoJogador', 'fotoDoJogador')
+        fields = ('id','nomeDoJogador', 'nrDoJogador', 'dataDeNascimento', 'nacionalidadedoJogador', 'equipaDoJogador', 'fotoDoJogador','golos','golosSofridos')
 
 class JogoSerializer(serializers.ModelSerializer):
     equipaDaCasa = EquipaSerializer()

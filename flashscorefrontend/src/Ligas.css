@@ -1,0 +1,34 @@
+.leftSection{
+    background-color: var(--cinzaescuro);
+    border-radius: 6px;
+    min-width: 15vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+}
+
+
+.leftSection h2{
+    color: white;
+}
+
+.leftSection a{
+    color: black;
+    font-weight: 700;
+    display: flex;
+    text-decoration: none;
+}
+
+.ligaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cinzabranco);
+    border-radius: 6px;
+    margin: 5px 0;
+    width: 85%;
+    min-height: 7%;
+    height: auto;
+}

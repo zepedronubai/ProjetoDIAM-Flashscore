@@ -135,6 +135,23 @@ def ligasEJogos(request):
 
     return Response(data)
     
+@api_view(['GET'])
+def liga(request, liga_id):
+    try:
+        liga = Liga.objects.get(id=liga_id)
+    except Liga.DoesNotExist:
+        return Response({'error': 'Liga not found'}, status=404)
+
+    liga_serializer = LigaSerializer(liga)
+    equipas = Equipa.objects.filter(liga=liga).order_by('-pontos')
+    equipas_serializer = EquipaSerializer(equipas, many=True)
+
+    response_data = {
+        'liga': liga_serializer.data,
+        'equipas': equipas_serializer.data
+    }
+    return Response(response_data)
+        
 class LoginView(APIView):
     def post(self, request):
 

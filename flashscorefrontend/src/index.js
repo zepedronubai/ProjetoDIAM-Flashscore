@@ -5,14 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Pages import
-import Homepage from './Homepage'
 import Headerino from './Headerino';
+import Liga from './Liga';
+import Homepage from './Homepage';
+//router
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <Headerino/>
-    <Homepage/>
+    <Liga/>
   </>
 );
 

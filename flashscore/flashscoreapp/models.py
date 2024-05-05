@@ -18,6 +18,10 @@ class Equipa(models.Model):
     sigla = models.CharField(max_length=10)
     liga = models.ForeignKey(Liga, on_delete=models.CASCADE)
     logoDaEquipa = models.CharField(default="",max_length=1000)
+    pontos = models.IntegerField(default=0)
+    golos = models.IntegerField(default=0)
+    golosSofridos = models.IntegerField(default=0)
+
 
 class Jogador(models.Model):
     nrDoJogador = models.IntegerField()
@@ -25,7 +29,8 @@ class Jogador(models.Model):
     nacionalidadedoJogador = models.ForeignKey(Nacionalidade, on_delete=models.CASCADE)
     equipaDoJogador = models.ForeignKey(Equipa, on_delete=models.CASCADE)
     fotoDoJogador = models.CharField(default="",max_length=1000)
-
+    golos = models.IntegerField(default=0)
+    
 class Jogo(models.Model):
     equipaDaCasa = models.ForeignKey(Equipa, on_delete=models.CASCADE, related_name='jogos_casa')
     equipaDeFora = models.ForeignKey(Equipa, on_delete=models.CASCADE,  related_name='jogos_fora')

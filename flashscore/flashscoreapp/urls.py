@@ -40,4 +40,5 @@ urlpatterns = [
     path("jogadores", views.jogadores),
     path("jogos", views.jogos),
     path("ligasejogos",views.ligasEJogos),
+    path("liga/<int:liga_id>", views.liga),
 ]
