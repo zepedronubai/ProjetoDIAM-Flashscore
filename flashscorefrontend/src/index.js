@@ -8,13 +8,20 @@ import reportWebVitals from './reportWebVitals';
 import Headerino from './Headerino';
 import Liga from './Liga';
 import Homepage from './Homepage';
+import Admin from './Admin'
 //router
+
+
+//icons import 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+library.add(faTrashAlt);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <Headerino/>
-    <Liga/>
+    <Admin/>
   </>
 );
 

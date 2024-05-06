@@ -1,0 +1,132 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+.backg{
+    background-color: rgb(198, 198, 198);
+    height: 100vh;
+    margin: 0px ;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15%;
+}
+
+.sideBarButtonsDiv{
+  margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 15%;
+  align-items:center;
+}
+
+.sideBarButtons{
+  color: aliceblue;
+  font-weight: 700;
+  background-color: var(--cinzaclaro);
+  width: 80%;
+  border: 0;
+  height: 30px;
+  border-radius: 6px;
+  margin: 3% 0;
+  min-width: 80px;
+}
+
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    height: fit-content;
+    align-items: center;
+    margin-top: 3%;
+    border-radius: 6px;
+    background-color: #515151;
+    color: white;
+}
+
+
+.mainContentTitle{
+  margin-top: 2%;
+}
+
+.mainContentLista{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 80%;
+  margin-bottom: 2%;
+}
+
+.mainContentLine{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  background-color: var(--cinzaclaro);
+  padding: 2% 0;
+  margin: 2% 0;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.mainContentLine div{
+  margin-left: 4%;
+  display: flex;
+  width: 80%;
+  align-items: center;
+}
+
+.mainContentLine p{
+  margin-left: 4%;
+}
+
+.mainContentLine button{
+  margin-right: 4%;
+  background-color: var(--cinzaclaro);
+  border: 0;
+}
+
+
+.addButton{
+  background-color: transparent;
+  border: 0;
+
+}
+
+.addIcon{
+  color: green;
+  font-weight: 900;
+  font-size: 50px;
+}
+
+.rightDiv{
+  width: 15%;
+  margin-top: 6%;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  border: 0;
+}
+
+
+
+
+.button-with-popup {
+    position: relative;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #A4A4A4;
+    border-radius: 6px;
+    width: 60vh;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    
+}
+
+

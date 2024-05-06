@@ -12,7 +12,11 @@
 
 .left {
     display: flex;
-    align-items: center;
+    align-items: center;    
+}
+
+.left h2{
+    margin: 0;
 }
 
 .right {

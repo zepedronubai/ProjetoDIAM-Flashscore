@@ -20,7 +20,7 @@ class EquipaSerializer(serializers.ModelSerializer):
 class JogadorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Jogador
-        fields = ('id','nomeDoJogador', 'nrDoJogador', 'dataDeNascimento', 'nacionalidadedoJogador', 'equipaDoJogador', 'fotoDoJogador','golos','golosSofridos')
+        fields = ('id','nomeDoJogador', 'nrDoJogador', 'dataDeNascimento', 'nacionalidadedoJogador', 'equipaDoJogador', 'fotoDoJogador','golos')
 
 class JogoSerializer(serializers.ModelSerializer):
     equipaDaCasa = EquipaSerializer()

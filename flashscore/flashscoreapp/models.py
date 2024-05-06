@@ -24,6 +24,7 @@ class Equipa(models.Model):
 
 
 class Jogador(models.Model):
+    nomeDoJogador = models.CharField(max_length=200, default="Ronaldo")
     nrDoJogador = models.IntegerField()
     dataDeNascimento = models.DateTimeField()
     nacionalidadedoJogador = models.ForeignKey(Nacionalidade, on_delete=models.CASCADE)

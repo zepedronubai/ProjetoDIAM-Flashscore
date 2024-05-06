@@ -30,10 +30,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.storage import FileSystemStorage
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from .serializers import *
-
+from rest_framework.permissions import AllowAny
 
 # Create your views here.
 
@@ -151,7 +151,57 @@ def liga(request, liga_id):
         'equipas': equipas_serializer.data
     }
     return Response(response_data)
-        
+
+
+
+#!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
+@api_view(['DELETE'])
+@permission_classes([AllowAny])      
+def deleteLiga(self, id=None):
+        try:
+            liga = Liga.objects.get(pk=id)
+        except Liga.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        liga.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+#!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
+@api_view(['DELETE'])
+@permission_classes([AllowAny])      
+def deleteEquipa(self, id=None):
+        try:
+            liga = Equipa.objects.get(pk=id)
+        except Equipa.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        liga.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+#!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
+@api_view(['DELETE'])
+@permission_classes([AllowAny])      
+def deleteJogador(self, id=None):
+        try:
+            liga = Jogador.objects.get(pk=id)
+        except Jogador.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        liga.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+#!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
+@api_view(['DELETE'])
+@permission_classes([AllowAny])      
+def deleteJogo(self, id=None):
+        try:
+            liga = Jogo.objects.get(pk=id)
+        except Jogo.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        liga.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class LoginView(APIView):
     def post(self, request):
 
