@@ -41,9 +41,9 @@ function LigaInfoSection(){
         
 
     const carregaBotao = (botaoCarregado) => {
-        if(botaoCarregado=='Tabela')
+        if(botaoCarregado==='Tabela')
             console.log("oi")
-        else if(botaoCarregado=='Stats')
+        else if(botaoCarregado==='Stats')
             console.log("adeus")
         else
             console.log("oi adeus")

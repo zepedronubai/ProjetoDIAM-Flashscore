@@ -1,3 +1,4 @@
+
 from django.core.mail.backends import console
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -33,7 +34,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from .serializers import *
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
+
 
 # Create your views here.
 
@@ -192,7 +194,7 @@ def deleteJogador(self, id=None):
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
 @api_view(['DELETE'])
-@permission_classes([AllowAny])      
+@permission_classes([AllowAny])
 def deleteJogo(self, id=None):
         try:
             liga = Jogo.objects.get(pk=id)
@@ -204,30 +206,48 @@ def deleteJogo(self, id=None):
 
 class LoginView(APIView):
     def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
 
-         username = request.data.get('username')
-         password = request.data.get('password')
-         user = authenticate(username=username, password=password)
-         if user:
-            token, _ = Token.objects.get_or_create(user=user)
-            return JsonResponse({'token': token.key})
-         else:
-             return JsonResponse({'error': 'Credenciais inválidas'}, status=400)
+        if username is None or password is None:
+            return Response({'error': 'Por favor, forneça tanto o nome de usuário quanto a senha.'}, status=status.HTTP_400_BAD_REQUEST)
 
+        user = authenticate(username=username, password=password)
 
+        if not user:
+            return Response({'error': 'Credenciais inválidas'}, status=status.HTTP_400_BAD_REQUEST)
 
+        token, _ = Token.objects.get_or_create(user=user)
 
-class LoginView(APIView):
+        return Response({'token': token.key})
+
+class LogoutView(APIView):
+
     def post(self, request):
+        token = request.data.get('token')
+        if token:
+            Token.objects.filter(key=token).delete()
+            
+            return Response({'message': 'Successfully logged out'})
 
-         username = request.data.get('username')
-         password = request.data.get('password')
-         user = authenticate(username=username, password=password)
-         if user:
-            token, _ = Token.objects.get_or_create(user=user)
-            return JsonResponse({'token': token.key})
-         else:
-             return JsonResponse({'error': 'Credenciais inválidas'}, status=400)
+        else:
+            return Response({'error': 'Token not provided'}, status=400)
+
+
+
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            # Create a new user with the validated data
+            user = User.objects.create_user(
+                username=serializer.validated_data['username'],
+                email=serializer.validated_data['email'],
+                password=serializer.validated_data['password']
+            )
+            return Response({'message': 'Registration successful'}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def registarutilizador(request):
@@ -314,3 +334,8 @@ def salvar_liga(request):
         nova_liga.save()
 
         return HttpResponseRedirect(reverse('flashscoreapp:index'))
+
+
+
+
+

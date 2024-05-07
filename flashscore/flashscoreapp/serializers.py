@@ -2,10 +2,21 @@ from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from .models import *
 
+
 class NacionalidadeSerializer(serializers.ModelSerializer):
  class Meta:
     model = Nacionalidade
     fields = ('id','pais','nacionalidadeNome','bandeira')
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']  # Add other fields as needed
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
 
 class LigaSerializer(serializers.ModelSerializer):
     class Meta:
