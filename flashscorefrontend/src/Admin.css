@@ -80,6 +80,16 @@
   margin-left: 4%;
 }
 
+
+.mainContentLineJogos{
+  margin-left: 0;
+  display: flex;
+}
+
+.mainContentLineJogos p{
+  margin-left: 0px;
+}
+
 .mainContentLine button{
   margin-right: 4%;
   background-color: var(--cinzaclaro);

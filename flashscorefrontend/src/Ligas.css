@@ -1,5 +1,5 @@
 .leftSection{
-    background-color: var(--cinzaescuro);
+    background-color: #515151;
     border-radius: 6px;
     min-width: 15vw;
     text-align: center;
@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--cinzabranco);
+    background-color: #D9D9D9;
     border-radius: 6px;
     margin: 5px 0;
     width: 85%;

@@ -11,7 +11,7 @@
   }
 
 .allStuffContainer{
-    background-color: var(--cinzabranco);
+    background-color: #D9D9D9;
     display: flex;  
     justify-content: space-around;
     padding: 0 10vw;
@@ -36,7 +36,7 @@
     width: 50%; /* Adjust width as needed */
     margin: 0 auto; /* Center the container horizontally */
     border-radius: 6px;
-    background-color: var(--cinzaescuro);
+    background-color: #515151;
 }
 
 .arrow-button {
@@ -63,7 +63,7 @@
     margin-top: 20px;
     border-radius: 6px;
     height: 50vh;
-    background-color: var(--cinzaescuro);
+    background-color: #515151;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,7 +86,7 @@
 
 .jogoContainer{
     display: flex;
-    background-color: var(--cinzabranco);
+    background-color: #D9D9D9;
     padding: 3%;
     margin: 1% 0;
     border-radius: 6px;
@@ -135,7 +135,7 @@
 
 
 .leftSection{
-    background-color: var(--cinzaescuro);
+    background-color: #515151;
     border-radius: 6px;
     min-width: 15vw;
     text-align: center;
@@ -160,7 +160,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--cinzabranco);
+    background-color: #D9D9D9;
     border-radius: 6px;
     margin: 5px 0;
     width: 85%;
@@ -170,7 +170,7 @@
 
 .rightSection{
     color: white;
-    background-color: var(--cinzaescuro);
+    background-color: #515151;
     border-radius: 6px;
     min-width: 15vw;
     text-align: center;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Admin.css';
 import './Homepage.css'
 import axios from 'axios';
@@ -9,48 +9,57 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 //import functions to create objects
-import LigaCreate from './FormsToCreateObjects';
+import {LigaCreate,EquipaCreate, JogadorCreate} from './FormsToCreateObjects';
 
 function Admin(){
     
     //var que tem o content que aparece no main display em html, ex: botao selecionado=ligas content=<p>ligas</p>
-    const [content, setContent] = useState(null);
-    const [contentTitle, setContentTitle] = useState("")
+      const [content, setContent] = useState(null);
+      const [contentTitle, setContentTitle] = useState("")
 
-    //funcao que da update ao main content consoante o botao carregado
-    const handleButtonClick = (content) => {
-      getContent(content).then(newContent => {
-        setContent(newContent);
-        setContentTitle(content)
-      });
-    };
-  
-    const getContent = (whatContent) => {
-      let contentArray = [];
-      let apiUrl = '';
-    
-      if (whatContent === "Ligas") {
-        apiUrl = 'http://127.0.0.1:8000/ligas';
-      } else if (whatContent === "Equipas") {
-        apiUrl = 'http://127.0.0.1:8000/equipas';
-      } else if (whatContent === "Jogadores"){
-        apiUrl = 'http://127.0.0.1:8000/jogadores';
-      } else if (whatContent === "Jogos"){
-        apiUrl = 'http://127.0.0.1:8000/jogos';
-      }else {
-        return Promise.resolve([]); // Return empty array if content is not recognized
-      }
-    
-      return axios.get(apiUrl)
-        .then(res => {
-          contentArray = res.data;
-          return contentArray;
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          return []; // Return empty array if there's an error
+      useEffect(() => {
+        handleButtonClick("Ligas");
+      }, []);
+
+      //funcao que da update ao main content consoante o botao carregado
+      const handleButtonClick = (content) => {
+        getContent(content).then(newContent => {
+          setContent(newContent);
+          setContentTitle(content)
         });
-    };
+      };
+    
+      const getContent = (whatContent) => {
+        let contentArray = [];
+        let apiUrl = '';
+      
+        if (whatContent === "Ligas") {
+          apiUrl = 'http://127.0.0.1:8000/ligas';
+        } else if (whatContent === "Equipas") {
+          apiUrl = 'http://127.0.0.1:8000/equipas';
+        } else if (whatContent === "Jogadores"){
+          apiUrl = 'http://127.0.0.1:8000/jogadores';
+        } else if (whatContent === "Jogos"){
+          apiUrl = 'http://127.0.0.1:8000/jogos';
+        }else {
+          return Promise.resolve([]); // Return empty array if content is not recognized
+        }
+      
+        return axios.get(apiUrl)
+          .then(res => {
+            contentArray = res.data;
+            return contentArray;
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+            return []; // Return empty array if there's an error
+          });
+      };
+
+    // Callback function to update main section content
+    const updateMainSection = (newContent) => {
+      setContent(newContent);
+    };  
 
     const deleteLine = (id) => {
       const isConfirmed = window.confirm("Are you sure you want to delete this item?");
@@ -117,11 +126,18 @@ function Admin(){
                 <div>
                 <img src={c.logoDaEquipa} />
                 <p>{c.nomeDaEquipa}</p>
+                <p>{c.sigla}</p>
+                <p>{c.pontos}Pts</p>
+                <p>{c.golos}Golos</p>
                 </div>
               }
               {contentTitle === "Jogos" &&
-                <div>
-                <p>{c.equipaDaCasa.nomeDaEquipa} X {c.equipaDeFora.nomeDaEquipa}</p>
+                <div className='mainContentLineJogos'>
+                  <p>{c.equipaDaCasa.nomeDaEquipa} </p>
+                  <img src={c.equipaDaCasa.logoDaEquipa} />
+                  <p>X</p>
+                  <img src={c.equipaDeFora.logoDaEquipa} />
+                  <p>{c.equipaDeFora.nomeDaEquipa} </p>
                 </div>  
               }
 
@@ -137,7 +153,7 @@ function Admin(){
       <div className='rightDiv'>
       <button className='addButton'>
         <FontAwesomeIcon icon={faPlus} className='addIcon'/>
-        <LigaCreate />
+        <LigaCreate onUpdateMainSection={handleButtonClick} />
       </button>
 
       </div>
