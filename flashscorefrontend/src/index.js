@@ -8,7 +8,9 @@ import reportWebVitals from './reportWebVitals';
 import Headerino from './Headerino';
 import Liga from './Liga';
 import Homepage from './Homepage';
-import Admin from './Admin'
+// import Admin from './Admin'
+import AdminTwo from './AdminTwo';
+import FormsToCreateTry from './javenhoaqui/FormsToCreateTry';
 //router
 
 
@@ -20,8 +22,7 @@ library.add(faTrashAlt);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <Headerino/>
-    <Admin/>
+    <Liga/>
   </>
 );
 

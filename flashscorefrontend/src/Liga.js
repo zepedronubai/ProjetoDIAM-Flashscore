@@ -7,7 +7,7 @@ import RightSection from './Rightsection';
 function Liga(){
 
     return(
-            <div className='allStuffContainer'>
+            <div className='container'>
                 <Ligas/>
                 <LigaInfoSection/>
                 <RightSection/>
@@ -55,7 +55,7 @@ function LigaInfoSection(){
     else{
         return(
             <>
-                <div className='mainSection'>
+                <div className='main'>
                     <div className='ligaName'>
                         <img src={liga.logoDaLiga}/>
                         <h1>{liga.nomeDaLiga}</h1>

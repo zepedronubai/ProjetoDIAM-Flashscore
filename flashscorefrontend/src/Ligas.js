@@ -17,10 +17,9 @@ function Ligas(){
 
     if(ligas.length>0)
         return(
-                <div className="leftSection">
-                    <h2>Ligas</h2>
+                <div className="left">
                         {ligas.map((l)=>
-                        <div className='ligaContainer' >
+                        <div className='sideBarButtons' >
                             <a href='#' id={l.id}>
                                 {l.nomeDaLiga}
                             </a>

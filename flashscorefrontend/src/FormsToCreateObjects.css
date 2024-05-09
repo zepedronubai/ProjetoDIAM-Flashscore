@@ -1,8 +1,114 @@
 *{
-    
+  font-size: 15px;
+  font-weight: 600;
 }
-.allStuffFormsToCreate{
-    background-color: aqua;
+
+.allStuffFormsToCreate {
+    align-items: center;
     display: flex;
     flex-direction: column;
+    width: 60%;
+    text-align: center;
+    background-color: orange;
+    border-radius: 6px;
+    min-width: 120px;
+    height: fit-content;
+    padding: 2% 0;
 }
+
+  
+
+  .allStuffFormsToCreate form {
+    margin-top: 10px;
+  }
+  
+  .allStuffFormsToCreate h2 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .allStuffFormsToCreate select,
+  .allStuffFormsToCreate input[type="datetime-local"] {
+    margin-bottom: 4%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    min-width: 100px;
+  }
+  .allStuffFormsToCreate input[type="text"] {
+    margin-bottom: 4%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    min-width: 100px;
+  }
+
+  .allStuffFormsToCreate input[type="number"] {
+    margin-bottom: 4%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    min-width: 100px;
+  }
+
+  .allStuffFormsToCreate button {
+    font-size: 16px;
+    width: 60%;
+    min-width: 100px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .allStuffFormsToCreate button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media screen and (max-width: 600px) {
+
+    *{
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .allStuffFormsToCreate {
+      margin-top: 4%;
+      min-width: 0;
+      width: 60%;
+      
+    }
+    
+    .allStuffFormsToCreate h2 {
+      font-size: 20px;
+    }
+  
+    .allStuffFormsToCreate p {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  
+    .allStuffFormsToCreate select,
+    .allStuffFormsToCreate input[type="datetime-local"] {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .allStuffFormsToCreate input[type="text"] {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .allStuffFormsToCreate input[type="number"] {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  
+    .allStuffFormsToCreate button {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+  

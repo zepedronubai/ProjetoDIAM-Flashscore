@@ -96,6 +96,7 @@ def jogadores(request):
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 @api_view(['GET', 'POST'])
 def jogos(request):
@@ -104,11 +105,21 @@ def jogos(request):
         serializer = JogoSerializer(jogos, context={'request': request}, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
+        print("AIAIAIAIAIAIAIIAIAIAIAIA")
+        print(request.data.get('equipaDaCasa'))
         serializer = JogoSerializer(data=request.data)
+        
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET', 'POST'])
+def jogo(request):
+    if request.method == 'GET':
+        jogos = Jogo.objects.all()
+        serializer = OnlyOneJogoSerializer(jogos, context={'request': request},many=True)
+        return Response(serializer.data)
     
 @api_view(['GET'])
 def ligasEJogos(request):
@@ -126,7 +137,7 @@ def ligasEJogos(request):
     for liga in ligas:
         jogosDaLiga = Jogo.objects.filter(liga=liga, horaDoJogo__date=target_date)
         if (len(jogosDaLiga)>0):
-            serializer = JogoSerializer(jogosDaLiga, many=True)
+            serializer = OnlyOneJogoSerializer(jogosDaLiga, many=True)
             liga_data = {
                 'nomeDaLiga': liga.nomeDaLiga,
                 'jogosDaLiga': serializer.data

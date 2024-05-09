@@ -1,6 +1,9 @@
 *{
     margin: 0;
+    color: black;
 }
+
+
 
 .mainSection{
     width: 40vw;
@@ -8,15 +11,16 @@
     flex-direction: column;
 }
 
+
 .ligaName{
     margin: auto;
     display: flex;
-
+    text-align: center;
     justify-content: center;
     align-items: center;
     width: 30vw;
-    background-color: var(--cinzaescuro);
-    height: 100px;
+    background-color: orange;
+    height: 60px;
     border-radius: 6px;
     color: white;
     padding-left: 2%;
@@ -28,11 +32,11 @@
 
 .ligaName h1{
     font-weight: 700;
+    font-size: 25px;
     margin-left: 1%;
 }
 
 .botoes{
-    
     display: flex;
     justify-content: center;
     padding: 0;
@@ -43,8 +47,8 @@
 
 .botoes button{
     font-weight: 600;
-    background-color: var(--cinzaescuro);
-    color: white;
+    background-color: orangered;
+    color: black;
     width: 100px;
     height: 25px;
     min-width: fit-content;
@@ -56,7 +60,8 @@
 
 .equipas{
     height: 50vh;
-    background-color: var(--cinzaescuro);
+    width: 100%;
+    background-color: yellow;
     margin-top: 10px;
     border-radius: 6px;
     color: white;
@@ -131,3 +136,15 @@
     .nomeToPutMaringgg{
         
     }
+
+@media screen and (max-width: 600px) {
+    .equipaDiv p{
+        font-size: 14px;
+    
+    }
+
+    .ligaName{
+        height: 40px;
+        width: 40vw;
+    }
+}
