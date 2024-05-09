@@ -225,9 +225,11 @@ class LogoutView(APIView):
 
     def post(self, request):
         token = request.data.get('token')
+
         if token:
+            print(Token.objects.filter(key=token))
             Token.objects.filter(key=token).delete()
-            
+
             return Response({'message': 'Successfully logged out'})
 
         else:
@@ -239,6 +241,7 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
+
             # Create a new user with the validated data
             user = User.objects.create_user(
                 username=serializer.validated_data['username'],
@@ -248,6 +251,21 @@ class RegisterView(APIView):
             return Response({'message': 'Registration successful'}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserInfoView(APIView):
+    def post(self, request):
+        token = request.data.get('token')
+        print(token)
+        user_ids = Token.objects.filter(key=token).values_list('user_id', flat=True)
+        print(user_ids)
+        user=User.objects.filter(id=int(str(user_ids[0])))
+        print(user)
+        data = {
+                'username': str(user[0]),
+
+            }
+        return Response(data)
 
 
 def registarutilizador(request):
