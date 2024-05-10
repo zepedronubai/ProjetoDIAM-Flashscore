@@ -6,6 +6,7 @@ function Headerino(){
 
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
+    const [showPagina, setShowPagina] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
     const [userData, setUserData] = useState(null);
@@ -81,7 +82,7 @@ function Headerino(){
 
         // Handle successful registration response
         console.log('Registration successful:', response.data);
-        // You can perform actions like redirecting to another page or showing a success message to the user
+        toggleRegisterForm();
     } catch (error) {
         // Handle registration error
         console.error('Registration error:', error);
@@ -90,6 +91,7 @@ function Headerino(){
 };
 
     const fetchUserData = async () => {
+        setShowPagina(!showPagina);
       try {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -107,30 +109,7 @@ function Headerino(){
         // Handle authentication error or other errors
       }
 
-
-      /* Teste de estilos para esconder pagina inicial
-      let userdetails = 0
-
-      const paginapessoal = document.getElementById("paginapessoal");
-      const userDetailsElement = document.getElementById("userDetailsElement");
-
-
-
-        if(userdetails === 0){
-                userDetailsElement.style.display = 'block'
-                paginapessoal.style.display = 'none'
-                userdetails = 1
-            }else{
-                userDetailsElement.style.display = 'none'
-                paginapessoal.style.display = 'block'
-                userdetails = 0
-            }
-*/
-    };
-
-
-
-
+}
     let searchBarShowing = 0
     
     const showSearchBar = () =>{
@@ -189,7 +168,7 @@ function Headerino(){
                     </form>
                 )}
                 <div ><i className="UserDetailsElement"></i>
-                     {userData && isLoggedIn && (
+                     {showPagina && userData && isLoggedIn && (
                         <>
                          <p><strong>Name:</strong> {userData.username}</p>
                         <p><strong>Email:</strong> {userData.email}</p>
