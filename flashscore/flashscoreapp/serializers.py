@@ -70,3 +70,8 @@ class OnlyOneJogoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Jogo
         fields = ('id', 'equipaDaCasa', 'equipaDeFora', 'liga', 'horaDoJogo')
+
+class FavoritosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favoritos
+        fields = ['equipa']

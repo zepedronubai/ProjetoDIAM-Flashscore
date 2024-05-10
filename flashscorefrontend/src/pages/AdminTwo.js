@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './AdminTwo.css';
-import './Homepage.css'
+import "./AdminTwo.css"
 import axios from 'axios';
 
 //import icons
@@ -9,8 +8,8 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 //import functions to create objects
-import {LigaCreate,EquipaCreate, JogadorCreate, JogoCreate} from './FormsToCreateObjects';
-import Ligas from './Ligas';
+import {LigaCreate,EquipaCreate, JogadorCreate, JogoCreate} from '../FormsToCreateObjects';
+import Ligas from '../Ligas';
 
 function AdminTwo(){
     

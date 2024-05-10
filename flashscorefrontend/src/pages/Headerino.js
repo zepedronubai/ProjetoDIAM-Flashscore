@@ -1,6 +1,7 @@
 import './Headerino.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 function Headerino(){
 
@@ -56,13 +57,14 @@ function Headerino(){
 
     return(
         <header className="header">
-            <div className="left">
-                <h2>FLASHSCORE</h2>
+            <div className="headerLeft">
+                <Link className='link' to={`/`}><h2>FLASHSCORE</h2></Link>
+                
             </div>
-            <div className="mid">
+            <div className="headerMid">
                 <input type="text" placeholder="" id="searchBar" className='searchBar'/>
             </div>
-            <div className="right">
+            <div className="headerRight">
                 
                 <button onClick={showSearchBar}><i className="fas fa-search"></i></button>
                 <button><i className="far fa-star"></i></button>

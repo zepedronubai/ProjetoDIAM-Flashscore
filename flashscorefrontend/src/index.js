@@ -1,30 +1,54 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Pages import
-import Headerino from './Headerino';
-import Liga from './Liga';
-import Homepage from './Homepage';
+import Headerino from './pages/Headerino';
+import Liga from './pages/Liga';
+import Homepage from './pages/Homepage';
+import TesteRouter from './TesteRouter';
 // import Admin from './Admin'
-import AdminTwo from './AdminTwo';
+import AdminTwo from './pages/AdminTwo';
 import FormsToCreateTry from './javenhoaqui/FormsToCreateTry';
 //router
-
-
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import {Link} from "react-router-dom";
 //icons import 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 library.add(faTrashAlt);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <>
-    <Liga/>
-  </>
+
+const rootElement = document.getElementById('root');
+
+// ReactDOM.createRoot(rootElement).render(<App />);
+
+ReactDOM.createRoot(rootElement).render(
+  <Router>
+    <App>
+      <Routes>
+        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/Liga/:ligaId" element={<Liga />} />
+        <Route exact path="/Admin" element={<AdminTwo />} />
+      </Routes>
+    </App>
+  </Router>
 );
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+// root.render(
+//   <>
+//     <App/>
+//   </>
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

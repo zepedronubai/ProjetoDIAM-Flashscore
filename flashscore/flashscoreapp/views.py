@@ -163,7 +163,14 @@ def liga(request, liga_id):
     }
     return Response(response_data)
 
-
+@api_view(['GET'])
+class userFavoritos(APIView):
+    def get(self, request):
+        user = request.user
+        favoritos = Favoritos.objects.filter(user=user)
+        equipas = [favorito.equipa for favorito in favoritos]
+        serializer = EquipaSerializer(equipas, many=True)
+        return Response(serializer.data)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
 @api_view(['DELETE'])

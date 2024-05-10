@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import axios from 'axios';
-import Ligas from './Ligas';
-import RightSection from './Rightsection';
+import Ligas from '../Ligas';
+import RightSection from '../Rightsection';
 
 function Homepage(){
 
@@ -25,18 +25,6 @@ function Homepage(){
         return `${year}-${month}-${day}`;
     };
  
-
-    return(
-        <>
-            <div className="container">
-                <Ligas/>
-                <MainSection/>
-                <RightSection/>
-            </div>
-        </>
-    )
-
-
 
 function MainSection(){
 
@@ -112,8 +100,15 @@ function MainSection(){
     )
 }
 
-
-
+return(
+    <>
+        <div className="container">
+            <Ligas/>
+            <MainSection/>
+            <RightSection/>
+        </div>
+    </>
+)
 
 }
 export default Homepage;

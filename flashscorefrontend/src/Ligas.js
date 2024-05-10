@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Ligas.css';
-
-
+import { Link } from "react-router-dom";
+import Liga from './pages/Liga';
 
 function Ligas(){
      //fetch das ligas para mostrar na section da esquerda
@@ -14,15 +14,20 @@ function Ligas(){
  
      console.log(ligas)
 
+    // function RedirectToLigaPage(ligaId){
+    //     const history = useHistory();
+    //     history.push(`/Liga/${ligaId}`)
+    // }
 
     if(ligas.length>0)
         return(
                 <div className="left">
                         {ligas.map((l)=>
                         <div className='sideBarButtons' >
-                            <a href='#' id={l.id}>
+                            {/* <button className='sideBarButtons' id={l.id} onClick={() => redirectToLigaPage(l.id)}>
                                 {l.nomeDaLiga}
-                            </a>
+                            </button> */}
+                            <Link to={`/Liga/${l.id}`}>{l.nomeDaLiga}</Link>
                         </div>
                         )}
                 </div>

@@ -45,6 +45,6 @@ urlpatterns = [
     path("deleteEquipa/<int:id>/", views.deleteEquipa),
     path("deleteJogador/<int:id>/", views.deleteJogador),
     path("deleteJogo/<int:id>/", views.deleteJogo),
-    path("jogo",views.jogo)
-
+    path("jogo",views.jogo),
+    path("favoritos/", views.userFavoritos),
 ]
