@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LoginView
+from .views import *
 from . import views
 
 
@@ -7,7 +7,7 @@ from . import views
 app_name = "flashscoreapp"
 urlpatterns = [
 
-    path("", views.index, name='index'),
+    path("bla/", views.index, name='index'),
     path('registarutilizador/', views.registarutilizador, name='registarutilizador'),
     path('login', views.login_view, name='login_view'),
     path('logout', views.logout_view, name='logout_view'),
@@ -18,6 +18,10 @@ urlpatterns = [
     path('salvar_equipa/', views.salvar_equipa, name='salvar_equipa'),
     path('criar_liga/', views.criar_liga, name='criar_liga'),
     path('salvar_liga/', views.salvar_liga, name='salvar_liga'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('user-info/', UserInfoView.as_view(), name='user-info'),
 
 
     path("", views.index, name='index'),
@@ -44,6 +48,9 @@ urlpatterns = [
     path("deleteLiga/<int:id>/", views.deleteLiga),
     path("deleteEquipa/<int:id>/", views.deleteEquipa),
     path("deleteJogador/<int:id>/", views.deleteJogador),
-    path("deleteJogo/<int:id>/", views.deleteJogo)
+    path("deleteJogo/<int:id>/", views.deleteJogo),
+
+
+
 
 ]
