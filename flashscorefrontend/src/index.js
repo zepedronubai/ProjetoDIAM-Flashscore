@@ -8,6 +8,9 @@ import Headerino from './pages/Headerino';
 import Liga from './pages/Liga';
 import Homepage from './pages/Homepage';
 import TesteRouter from './TesteRouter';
+import Login from './pages/Login';
+import Jogador from './pages/Jogador';
+import Favoritos from './pages/Favoritos';
 // import Admin from './Admin'
 import AdminTwo from './pages/AdminTwo';
 import FormsToCreateTry from './javenhoaqui/FormsToCreateTry';
@@ -19,6 +22,7 @@ import {Link} from "react-router-dom";
 //icons import 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 library.add(faTrashAlt);
 
 
@@ -34,6 +38,9 @@ ReactDOM.createRoot(rootElement).render(
         <Route exact path="/Liga/:ligaId" element={<Liga />} />
         <Route exact path="/Admin" element={<AdminTwo />} />
         <Route exact path="/Equipa/:equipaID" element={<Equipa />} />
+        <Route exact path="/Login" element={<Login />} />
+        <Route exact path="/Jogador/:jogadorID" element={<Jogador />} />
+        <Route exact path="/Favoritos/:userID" element={<Favoritos />} />
       </Routes>
     </App>
   </Router>

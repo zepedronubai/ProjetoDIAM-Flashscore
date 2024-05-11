@@ -56,8 +56,7 @@ function Equipa() {
     )}
   </div>
   <div className='right'>
-        <Ligas/>
-      </div>
+        </div>
   </div>
   
   );

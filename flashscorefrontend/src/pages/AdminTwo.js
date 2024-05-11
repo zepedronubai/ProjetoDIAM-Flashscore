@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./AdminTwo.css"
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -49,7 +50,7 @@ function AdminTwo(){
         } else if (whatContent === "Jogadores"){
           apiUrl = 'http://127.0.0.1:8000/jogadores';
         } else if (whatContent === "Jogos"){
-          apiUrl = 'http://127.0.0.1:8000/jogo';
+          apiUrl = 'http://127.0.0.1:8000/todosJogos';
         }else {
           return Promise.resolve([]); // Return empty array if content is not recognized
         }
@@ -108,7 +109,6 @@ function AdminTwo(){
     const fullDate = new Date(date)
     const hours = fullDate.getHours();
     const minutes = fullDate.getMinutes();
-    console.log(hours)
     return(hours + ":" + minutes)
 }
 
@@ -116,10 +116,18 @@ function AdminTwo(){
       <body className='body'>
       <div class="container">
           <div class="left">
-            <button className='sideBarButtons' onClick={() => handleButtonClick("Ligas")}>Ligas</button>
-            <button className='sideBarButtons' onClick={() => handleButtonClick("Equipas")}>Equipas</button>
-            <button className='sideBarButtons' onClick={() => handleButtonClick("Jogadores")}>Jogadores</button>
-            <button className='sideBarButtons' onClick={() => handleButtonClick("Jogos")}>Jogos</button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Ligas")}>
+              <p className='sideBarButtonsName'>Ligas</p>
+            </button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Equipas")}>
+              <p className='sideBarButtonsName'>Equipas</p>
+            </button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Jogadores")}>
+              <p className='sideBarButtonsName'>Jogadores</p>
+            </button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Jogos")}>
+              <p className='sideBarButtonsName'>Jogos</p>
+            </button>
           </div>
           <div class="main">
             {contentTitle && <h1 className='mainContentTitle'>{contentTitle}</h1>}
@@ -136,28 +144,26 @@ function AdminTwo(){
                   {contentTitle === "Ligas" &&
                     <div>
                     <img src={c.logoDaLiga} />
-                    <p>{c.nomeDaLiga}</p>
+                    <Link className='links' to={`/Liga/${c.id}`}>{c.nomeDaLiga}</Link>
+                    
                     </div>
                   }
                   {contentTitle === "Equipas" &&
                     <div>
                     <img src={c.logoDaEquipa} />
-                    <p>{c.nomeDaEquipa}</p>
-                    <p>{c.sigla}</p>
-                    <p>{c.pontos}Pts</p>
-                    <p>{c.golos}Golos</p>
+                    <Link className='links' to={`/Equipa/${c.id}`}>{c.nomeDaEquipa}</Link>
                     </div>
                   }
                   {contentTitle === "Jogos" &&
                     <div className='mainContentLineJogos'>
-                      <p>{c.equipaDaCasa.nomeDaEquipa} </p>
+                      <Link className='links' to={`/Equipa/${c.equipaDaCasa.id}`}>{c.equipaDaCasa.nomeDaEquipa}</Link>
                       <img src={c.equipaDaCasa.logoDaEquipa} />
                       <div>
                         <p>{formateDateToHourAndMinutes(c.horaDoJogo)}</p>
                         <p>X</p>
                       </div>
                       <img src={c.equipaDeFora.logoDaEquipa} />
-                      <p>{c.equipaDeFora.nomeDaEquipa} </p>
+                      <Link className='links' to={`/Equipa/${c.equipaDeFora.id}`}>{c.equipaDeFora.nomeDaEquipa}</Link>
                     </div>  
                   }
 

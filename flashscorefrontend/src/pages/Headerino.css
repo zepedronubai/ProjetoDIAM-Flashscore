@@ -32,25 +32,13 @@
 .headerRight {
     margin-right: 12%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100px;
 }
 
 .headerMid{
     
-}
-
-.searchBar{
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    display: none;
-    width: 15vw;
-    height: 30px;
-    margin: 0 auto;
-    &:focus {
-		outline: none;
-	}
-    animation-name: example;
-    animation-duration: 4s;
 }
 
 .headerRight button {
@@ -63,4 +51,19 @@
 /* Adjust icon size as needed */
 .headerRight button i {
     font-size: 1.2rem;
+}
+
+@media screen and (max-width: 600px) {
+    .header{
+        height: 50px;
+    }
+
+    .headerLeft {
+        margin-left:6% ;
+    }
+
+    .headerRight {
+        margin-right:6% ;
+        width: 60px;
+    }
 }

@@ -107,15 +107,20 @@ def jogos(request):
         serializer = JogoSerializer(jogos, context={'request': request}, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        print("AIAIAIAIAIAIAIIAIAIAIAIA")
-        print(request.data.get('equipaDaCasa'))
         serializer = JogoSerializer(data=request.data)
         
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+@api_view(['GET'])
+def todosJogos(request):
+    if request.method == 'GET':
+        jogos = Jogo.objects.all()
+        serializer = JogosSerializer(jogos, context={'request': request}, many=True)
+        return Response(serializer.data)
+
 @api_view(['GET', 'POST'])
 def jogo(request):
     if request.method == 'GET':
@@ -162,6 +167,31 @@ def liga(request, liga_id):
     response_data = {
         'liga': liga_serializer.data,
         'equipas': equipas_serializer.data
+    }
+    return Response(response_data)
+
+@api_view(['GET'])
+def jogador(request, jogador_id):
+    try:
+        jogador = Jogador.objects.get(id=jogador_id)
+    except Jogador.DoesNotExist:
+        return Response({'error': 'Jogador not found'}, status=404)
+
+    equipa = jogador.equipaDoJogador
+    nacionalidade = jogador.nacionalidadedoJogador
+    print(equipa)
+    # try:
+    #     equipa = Equipa.objects.get(id=equipa_id)
+    # except Equipa.DoesNotExist:
+    #     return Response({'error': 'equipa not found'}, status=404)
+    nacionalidade_serializer = NacionalidadeSerializer(nacionalidade)
+    jogador_serializer = JogadorSerializer(jogador)
+    equipa_serializer = EquipaSerializer(equipa)
+
+    response_data = {
+        'jogador': jogador_serializer.data,
+        'equipa' : equipa_serializer.data,
+        'nacionalidade' : nacionalidade_serializer.data
     }
     return Response(response_data)
 
@@ -237,6 +267,37 @@ def deleteJogo(self, id=None):
 
         liga.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+class loginViewZe(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            # Perform login action here, such as creating a session or generating a token
+            # For example, you can use Django's login method to create a session
+            login(request, user)
+            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['POST'])
+class registerViewZe(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        email = request.data.get('email')
+        password = request.data.get('password')
+        
+        if not all([username, email, password]):
+            return Response({'error': 'Username, email, and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.create_user(username=username, email=email, password=password)
+            return Response({'message': 'Registration successful'}, status=status.HTTP_201_CREATED)
+        except:
+            return Response({'error': 'Failed to register user'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class LoginView(APIView):
     def post(self, request):

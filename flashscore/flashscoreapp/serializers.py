@@ -74,6 +74,14 @@ class JogoSerializer(serializers.ModelSerializer):
 
         return data
     
+class JogosSerializer(serializers.ModelSerializer):
+    equipaDaCasa = EquipaSerializer()
+    equipaDeFora = EquipaSerializer()
+
+    class Meta:
+        model = Jogo
+        fields = ['id', 'equipaDaCasa', 'equipaDeFora', 'liga', 'horaDoJogo']
+
 class OnlyOneJogoSerializer(serializers.ModelSerializer):
     equipaDaCasa = EquipaSerializer()
     equipaDeFora = EquipaSerializer()

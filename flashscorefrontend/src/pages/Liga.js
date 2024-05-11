@@ -4,6 +4,7 @@
     import Ligas from '../Ligas';
     import RightSection from '../Rightsection';
     import { useParams } from 'react-router-dom';
+    import { Link } from "react-router-dom";
 
     function Liga(){
         const ligaId = useParams();
@@ -80,12 +81,13 @@
                                     <div className='posiFotoENomeEquipa'>
                                         <p className='orderNumber'>{index + 1}</p>
                                         <img src='#'/>
-                                        <p className='nomeEquipa'>{equipa.nomeDaEquipa}</p>
+                                        <Link to={`/Equipa/${equipa.id}`} className='nomeEquipa'>{equipa.nomeDaEquipa}</Link>
+                                        
                                     </div>
                                     <div className='restoInfoEquipa'>
-                                        <p className='nomeToPutMaringg'>{equipa.golos}</p>
-                                        <p className='nomeToPutMaringg'>{equipa.golosSofridos}</p>
-                                        <p className='nomeToPutMaringgg'>{equipa.pontos}</p>
+                                        <p className=''>{equipa.golos}</p>
+                                        <p className=''>{equipa.golosSofridos}</p>
+                                        <p className=''>{equipa.pontos}</p>
                                     </div>
                                 </div>
                                 

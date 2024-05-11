@@ -134,18 +134,6 @@ function Headerino(){
 
     let searchBarShowing = 0
     
-    const showSearchBar = () =>{
-        const searchBar = document.getElementById("searchBar");
-        console.log(searchBar)
-        if(searchBarShowing === 0){
-            searchBar.style.display = 'block' 
-            searchBarShowing = 1
-        }else{
-            searchBar.style.display = 'none' 
-            searchBarShowing = 0
-        }
-        
-    }
 
     return(
         <header className="header">
@@ -154,15 +142,13 @@ function Headerino(){
                 
             </div>
             <div className="headerMid">
-                <input type="text" placeholder="" id="searchBar" className='searchBar'/>
+                
             </div>
             <div className="headerRight">
-                
-                <button onClick={showSearchBar}><i className="fas fa-search"></i></button>
-                <button><i className="far fa-star"></i></button>
+                <Link to={`/Favoritos`} className='ligaNome'><i className="far fa-star"/></Link>
                 <button><i className="fas fa-bars"></i></button>
-
-                 {isLoggedIn ? (
+                <Link to={`/Login`} className='ligaNome'><i className="fas fa-user"/></Link>
+                 {/* {isLoggedIn ? (
                  <>
                     <span>Welcome, {username}</span>
                     <button onClick={handleLogout} ><i className="fas fa-sign-out-alt"></i>Logout</button>
@@ -196,9 +182,9 @@ function Headerino(){
                          <p><strong>Name:</strong> {userData.username}</p>
                         <p><strong>Email:</strong> {userData.email}</p>
                          </>
-                     )}
+                     )} */}
                 </div>
-                </div>
+
 
 
 

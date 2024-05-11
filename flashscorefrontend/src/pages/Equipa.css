@@ -3,7 +3,7 @@
 }
 
 .team-info{
-  background-color: rgb(168, 167, 167);
+  background-color: rgb(151, 151, 151);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,6 @@
 
 .fotoENome{
   display: flex;
-  background-color: grey;
   width: 40%;
   height: 45px;
   border-radius: 6px;

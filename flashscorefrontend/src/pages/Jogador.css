@@ -1,0 +1,16 @@
+.fotoENomeJogadorProfile{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+    border-radius: 6px;
+    width: 250px;
+    height: 100px;
+    justify-content: center;
+}
+
+.fotoENomeJogadorProfile h2{
+    font-size: 24px;
+}
+
+.fotoENomeJogadorProfile img{}

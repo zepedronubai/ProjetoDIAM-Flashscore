@@ -11,6 +11,8 @@ import TesteRouter from './TesteRouter';
 
 
 const App = ({ children }) => {
+  const pageName = children.props;
+  console.log(pageName)
   return (
     <div>
       <Headerino/>
