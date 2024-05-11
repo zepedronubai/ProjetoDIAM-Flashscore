@@ -43,7 +43,7 @@
                 setData(res.data);
                 
             });
-            }, []);
+            }, [ligaId]);
             
 
         const carregaBotao = (botaoCarregado) => {
@@ -65,11 +65,6 @@
                         <div className='ligaName'>
                             <img src={liga.logoDaLiga}/>
                             <h1>{liga.nomeDaLiga}</h1>
-                        </div>
-                        <div className='botoes'>
-                            <button onClick={() => carregaBotao('Tabela')}>Tabela</button>
-                            <button onClick={() => carregaBotao('Stats')}>Stats</button>
-                            <button onClick={() => carregaBotao('Melhores')}>Melhores</button>
                         </div>
                         <div className='equipas'>
                             <div className='nomesColunas'>

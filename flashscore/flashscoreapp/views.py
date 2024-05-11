@@ -164,6 +164,22 @@ def liga(request, liga_id):
     return Response(response_data)
 
 @api_view(['GET'])
+def equipa(request, equipa_id):
+    try:
+        equipa = Equipa.objects.get(id=equipa_id)
+    except Equipa.DoesNotExist:
+        return Response({'error': 'Liga not found'}, status=404)
+    equipa_serializer = EquipaSerializer(equipa)
+    jogadores = Jogador.objects.filter(equipaDoJogador_id=equipa_id)
+    jogadores_serializer = JogadorSerializer(jogadores, many=True)
+
+    response_data = {
+        'equipa': equipa_serializer.data,
+        'jogadores': jogadores_serializer.data
+    }
+    return Response(response_data)
+
+@api_view(['GET'])
 class userFavoritos(APIView):
     def get(self, request):
         user = request.user

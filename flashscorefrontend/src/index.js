@@ -11,6 +11,7 @@ import TesteRouter from './TesteRouter';
 // import Admin from './Admin'
 import AdminTwo from './pages/AdminTwo';
 import FormsToCreateTry from './javenhoaqui/FormsToCreateTry';
+import Equipa from './pages/Equipa';
 //router
 import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
@@ -32,6 +33,7 @@ ReactDOM.createRoot(rootElement).render(
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="/Liga/:ligaId" element={<Liga />} />
         <Route exact path="/Admin" element={<AdminTwo />} />
+        <Route exact path="/Equipa/:equipaID" element={<Equipa />} />
       </Routes>
     </App>
   </Router>

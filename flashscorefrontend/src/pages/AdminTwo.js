@@ -113,7 +113,7 @@ function AdminTwo(){
 }
 
     return (
-      <body>
+      <body className='body'>
       <div class="container">
           <div class="left">
             <button className='sideBarButtons' onClick={() => handleButtonClick("Ligas")}>Ligas</button>

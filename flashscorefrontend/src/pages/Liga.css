@@ -18,7 +18,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    width: 30vw;
+    width: 40%;
     background-color: orange;
     height: 60px;
     border-radius: 6px;
@@ -30,19 +30,21 @@
     float: left;
 }
 
+
+  
 .ligaName h1{
-    font-weight: 700;
-    font-size: 25px;
-    margin-left: 1%;
+    font-weight: 600;
+    font-size: 22px;
 }
 
 .botoes{
+    background-color: red;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0;
     margin: auto;
     margin-top: 10px;
-    width: 20vw;
+    width: 30%;
 }
 
 .botoes button{
@@ -53,8 +55,6 @@
     height: 25px;
     min-width: fit-content;
     border-radius: 6px;
-    margin: 0;
-    margin: 0 5%;
     border: 0;
 }
 

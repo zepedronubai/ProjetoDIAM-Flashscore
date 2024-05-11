@@ -1,56 +1,57 @@
-.leftSection{
-    background-color: transparent;
-    border-radius: 6px;
-    min-width: 15vw;
-    text-align: center;
-    align-items: center;
-    height: fit-content;
-    padding: 5% 0;
-}
-    
 
+    
+.sideBarButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: grey;
+    height: 32px;
+    min-height: fit-content;
+    border-radius: 6px;
+    width: 60%;
+    min-width: 100px;
+    border: 0;
+    margin: 3px 0;
+  }
+
+  .ligaNome{
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+  }
 
 .leftSection h2{
     color: white;
 }
 
 .leftSection a{
-    color: black;
     font-weight: 700;
     display: flex;
     text-decoration: none;
 }
 
-.ligaContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #D9D9D9;
-    border-radius: 6px;
-    padding: 2%;
-    margin: 5px 0;
-    width: 80%;
-    min-height: 7%;
-    text-align: center;
-    height: auto;
-
-}
 
 /* Responsive styles */
 @media screen and (max-width: 600px) {
-    .leftSection {
-        background-color: transparent;
-        font-size: 12px;
-        flex-direction: row;
-        padding: 0;
+
+
+    .left{
+        overflow-x: auto;
     }
-    .ligaContainer{
-        height: 16px;
-        width: 100px;
-        margin: 0 5px;
+    .sideBarButtons{
+        margin: 0 6px;
+        width: 10px;
+        background-color: grey;
+        overflow-x: auto;
+        height:100%;
     }
 
-    .left, .main, .right {
-        width: 100%;
-    }
+    
+  .ligaNome{
+    color: white;
+    font-size: 11px;
+    text-decoration: none;
+  }
+
   }

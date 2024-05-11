@@ -27,15 +27,15 @@ function Ligas(){
                             {/* <button className='sideBarButtons' id={l.id} onClick={() => redirectToLigaPage(l.id)}>
                                 {l.nomeDaLiga}
                             </button> */}
-                            <Link to={`/Liga/${l.id}`}>{l.nomeDaLiga}</Link>
+                            <Link to={`/Liga/${l.id}`} className='ligaNome'>{l.nomeDaLiga}</Link>
                         </div>
                         )}
                 </div>
         )
     else
         return(
-            <div className="leftSection">
-            <h2>Tao</h2>
+            <div className="left">
+            <h2>Não há ligas disponiveis</h2>
         </div>
     )
 }

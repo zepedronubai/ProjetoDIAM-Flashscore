@@ -1,0 +1,90 @@
+*{
+  padding: 0;
+}
+
+.team-info{
+  background-color: rgb(168, 167, 167);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fotoENome{
+  display: flex;
+  background-color: grey;
+  width: 40%;
+  height: 45px;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fotoENome h2{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.equipaInfo{
+  display: flex;
+  justify-content:space-between ;
+  width: 30%;
+}
+
+.equipaInfo p{
+
+}
+
+.jogadoresTitulo{
+  margin-top: 2%;
+  font-size: 16px;
+
+}
+
+.jogadores{
+  width: 60%;
+  list-style-type: none;
+}
+
+.jogador{
+  height: 35px;
+  padding: 0 5px;
+  background-color: grey;
+  border-radius: 6px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fotoENomeJogador{
+  align-items: center;
+  display: flex;
+}
+.jogadorInfo{
+  justify-content: flex-end;
+  width: 40%;
+  display: flex;
+}
+.jogadorInfo p{
+  font-size: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  *{
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .fotoENome{
+    width: 60%;
+  }
+
+  .jogadores{
+    width: 70%;
+  }
+
+  .equipaInfo{
+    width: 50%;
+  }
+}
+  
