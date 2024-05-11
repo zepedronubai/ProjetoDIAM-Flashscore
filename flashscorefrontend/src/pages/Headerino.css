@@ -1,0 +1,69 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 0;
+    background-color: #333;
+    color: white;
+    height: 60px;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    margin-left:12% ;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.headerLeft h2{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+}
+
+.headerRight {
+    margin-right: 12%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+}
+
+.headerMid{
+    
+}
+
+.headerRight button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Adjust icon size as needed */
+.headerRight button i {
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 600px) {
+    .header{
+        height: 50px;
+    }
+
+    .headerLeft {
+        margin-left:6% ;
+    }
+
+    .headerRight {
+        margin-right:6% ;
+        width: 60px;
+    }
+}

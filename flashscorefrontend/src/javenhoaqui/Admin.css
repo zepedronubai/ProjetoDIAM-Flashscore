@@ -8,7 +8,7 @@
     height: 100vh;
     margin: 0px ;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0 15%;
 }
 
@@ -41,13 +41,14 @@
     align-items: center;
     margin-top: 3%;
     border-radius: 6px;
+    padding: 2% 0 ;
     background-color: #515151;
     color: white;
 }
 
 
 .mainContentTitle{
-  margin-top: 2%;
+  /* margin-top: 2%; */
 }
 
 .mainContentLista{
@@ -55,7 +56,8 @@
   flex-direction: column;
   color: white;
   width: 80%;
-  margin-bottom: 2%;
+  margin-top: 2%;
+  /* margin-bottom: 2%; */
 }
 
 .mainContentLine{
@@ -110,12 +112,10 @@
 }
 
 .rightDiv{
-  width: 15%;
   margin-top: 6%;
-  display: flex;
-  justify-content: center;
   height: fit-content;
-  border: 0;
+  width: 15%;
+  background-color: red;
 }
 
 
@@ -140,3 +140,26 @@
 }
 
 
+
+@media screen and (max-width: 768px) {
+  .mainContent {
+    
+  }
+  
+  .mainContent h2 {
+    font-size: 20px;
+  }
+
+  .mainContentLine div p {
+    font-size: 14px;
+  }
+
+  .allStuffFormsToCreate select,
+  .allStuffFormsToCreate input[type="datetime-local"] {
+    font-size: 14px;
+  }
+
+  .allStuffFormsToCreate button {
+    font-size: 16px;
+  }
+}

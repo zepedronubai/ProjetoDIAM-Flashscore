@@ -1,6 +1,7 @@
 import './Headerino.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 function Headerino(){
 
@@ -112,34 +113,21 @@ function Headerino(){
 }
     let searchBarShowing = 0
     
-    const showSearchBar = () =>{
-        const searchBar = document.getElementById("searchBar");
-        console.log(searchBar)
-        if(searchBarShowing === 0){
-            searchBar.style.display = 'block' 
-            searchBarShowing = 1
-        }else{
-            searchBar.style.display = 'none' 
-            searchBarShowing = 0
-        }
-        
-    }
 
     return(
         <header className="header">
-            <div className="left">
-                <h2>FLASHSCORE</h2>
-            </div>
-            <div className="mid">
-                <input type="text" placeholder="" id="searchBar" className='searchBar'/>
-            </div>
-            <div className="right">
+            <div className="headerLeft">
+                <Link className='link' to={`/`}><h2>FLASHSCORE</h2></Link>
                 
-                <button onClick={showSearchBar}><i className="fas fa-search"></i></button>
-                <button><i className="far fa-star"></i></button>
+            </div>
+            <div className="headerMid">
+                
+            </div>
+            <div className="headerRight">
+                <Link to={`/Favoritos`} className='ligaNome'><i className="far fa-star"/></Link>
                 <button><i className="fas fa-bars"></i></button>
-
-                 {isLoggedIn ? (
+                <Link to={`/Login`} className='ligaNome'><i className="fas fa-user"/></Link>
+                 {/* {isLoggedIn ? (
                  <>
                     <span>Welcome, {username}</span>
                     <button onClick={handleLogout} ><i className="fas fa-sign-out-alt"></i>Logout</button>
@@ -173,9 +161,9 @@ function Headerino(){
                          <p><strong>Name:</strong> {userData.username}</p>
                         <p><strong>Email:</strong> {userData.email}</p>
                          </>
-                     )}
+                     )} */}
                 </div>
-                </div>
+
 
 
 

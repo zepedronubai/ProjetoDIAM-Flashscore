@@ -1,6 +1,9 @@
 *{
     margin: 0;
+    color: black;
 }
+
+
 
 .mainSection{
     width: 40vw;
@@ -8,15 +11,16 @@
     flex-direction: column;
 }
 
+
 .ligaName{
     margin: auto;
     display: flex;
-
+    text-align: center;
     justify-content: center;
     align-items: center;
-    width: 30vw;
-    background-color: var(--cinzaescuro);
-    height: 100px;
+    width: 40%;
+    background-color: grey;
+    height: 60px;
     border-radius: 6px;
     color: white;
     padding-left: 2%;
@@ -26,37 +30,19 @@
     float: left;
 }
 
+
+  
 .ligaName h1{
-    font-weight: 700;
-    margin-left: 1%;
-}
-
-.botoes{
-    
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: auto;
-    margin-top: 10px;
-    width: 20vw;
-}
-
-.botoes button{
     font-weight: 600;
-    background-color: var(--cinzaescuro);
+    font-size: 22px;
     color: white;
-    width: 100px;
-    height: 25px;
-    min-width: fit-content;
-    border-radius: 6px;
-    margin: 0;
-    margin: 0 5%;
-    border: 0;
 }
+
 
 .equipas{
     height: 50vh;
-    background-color: var(--cinzaescuro);
+    width: 100%;
+    background-color: rgb(198, 198, 198);
     margin-top: 10px;
     border-radius: 6px;
     color: white;
@@ -124,10 +110,18 @@
     margin: 0 auto;
 }
 
-    .nomeToPutMaringg{
-        
+.nomeEquipa{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .equipaDiv p{
+        font-size: 14px;
+    
     }
 
-    .nomeToPutMaringgg{
-        
+    .ligaName{
+        height: 40px;
+        width: 60%;
     }
+}

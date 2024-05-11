@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import axios from 'axios';
-import Ligas from './Ligas';
-import RightSection from './Rightsection';
+import Ligas from '../Ligas';
+import RightSection from '../Rightsection';
 
 function Homepage(){
 
@@ -25,18 +25,6 @@ function Homepage(){
         return `${year}-${month}-${day}`;
     };
  
-
-    return(
-        <>
-            <div className="allStuffContainer">
-                <Ligas/>
-                <MainSection/>
-                <RightSection/>
-            </div>
-        </>
-    )
-
-
 
 function MainSection(){
 
@@ -77,7 +65,7 @@ function MainSection(){
     }
     
     return(
-        <div className="mainSection">
+        <div className="main">
             <div className="dataChanger">
                 <button className="arrow-button left-arrow" onClick={() => updateDateToBeFetched("back")}><p class="textDataChanger">&lt;</p></button>
                 <p className="textDataChanger">{dateToBeFetched}</p>
@@ -96,8 +84,8 @@ function MainSection(){
                             <img src={jogo.equipaDaCasa.logoDaEquipa}/>
                             </div>
                             <div className='horaDoJogo'>
-                                <h5>{formateDateToHourAndMinutes(jogo.horaDoJogo)}</h5>
-                                <h5>X</h5>
+                                <h5 className='hora'>{formateDateToHourAndMinutes(jogo.horaDoJogo)}</h5>
+                                <h5 className='x'>X</h5>
                             </div>
                             <div className='equipasDoJogoRight'>
                             <img src={jogo.equipaDeFora.logoDaEquipa}/>
@@ -112,8 +100,15 @@ function MainSection(){
     )
 }
 
-
-
+return(
+    <>
+        <div className="container">
+            <Ligas/>
+            <MainSection/>
+            <RightSection/>
+        </div>
+    </>
+)
 
 }
 export default Homepage;

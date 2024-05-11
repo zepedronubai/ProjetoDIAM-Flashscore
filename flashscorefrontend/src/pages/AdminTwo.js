@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Admin.css';
-import './Homepage.css'
+import "./AdminTwo.css"
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,13 +9,15 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 //import functions to create objects
-import {LigaCreate,EquipaCreate, JogadorCreate} from './FormsToCreateObjects';
+import {LigaCreate,EquipaCreate, JogadorCreate, JogoCreate} from '../FormsToCreateObjects';
+import Ligas from '../Ligas';
 
-function Admin(){
+function AdminTwo(){
     
     //var que tem o content que aparece no main display em html, ex: botao selecionado=ligas content=<p>ligas</p>
       const [content, setContent] = useState(null);
       const [contentTitle, setContentTitle] = useState("")
+      const [createWhat, setCreateWhat] = useState(null)
 
       useEffect(() => {
         handleButtonClick("Ligas");
@@ -26,6 +28,14 @@ function Admin(){
         getContent(content).then(newContent => {
           setContent(newContent);
           setContentTitle(content)
+          if(content=="Ligas")
+            setCreateWhat(<LigaCreate onUpdateMainSection={updateMainSection}/>)
+          if(content=="Equipas")
+            setCreateWhat(<EquipaCreate onUpdateMainSection={updateMainSection}/>)
+          if(content=="Jogadores")
+            setCreateWhat(<JogadorCreate onUpdateMainSection={updateMainSection}/>)
+          if(content=="Jogos")
+            setCreateWhat(<JogoCreate onUpdateMainSection={updateMainSection}/>)
         });
       };
     
@@ -40,7 +50,7 @@ function Admin(){
         } else if (whatContent === "Jogadores"){
           apiUrl = 'http://127.0.0.1:8000/jogadores';
         } else if (whatContent === "Jogos"){
-          apiUrl = 'http://127.0.0.1:8000/jogos';
+          apiUrl = 'http://127.0.0.1:8000/todosJogos';
         }else {
           return Promise.resolve([]); // Return empty array if content is not recognized
         }
@@ -95,69 +105,81 @@ function Admin(){
     };
   }
 
+  const formateDateToHourAndMinutes = (date) => {
+    const fullDate = new Date(date)
+    const hours = fullDate.getHours();
+    const minutes = fullDate.getMinutes();
+    return(hours + ":" + minutes)
+}
 
     return (
-    <div className='backg'>
-      <div className='sideBarButtonsDiv'>
-        <button className='sideBarButtons' onClick={() => handleButtonClick("Ligas")}>Ligas</button>
-        <button className='sideBarButtons' onClick={() => handleButtonClick("Equipas")}>Equipas</button>
-        <button className='sideBarButtons' onClick={() => handleButtonClick("Jogadores")}>Jogadores</button>
-        <button className='sideBarButtons' onClick={() => handleButtonClick("Jogos")}>Jogos</button>
-      </div>
-      <div className='mainContent'>
-        {contentTitle && <h2 className='mainContentTitle'>{contentTitle}</h2>}
-        {content && 
-          <div className='mainContentLista'>
-            {content.map((c) => 
-            <div className='mainContentLine'>
-              {contentTitle === "Jogadores" &&
-                <div>
-                  <img src={c.fotoDoJogador} />
-                  <p>{c.nomeDoJogador}</p>
-                </div>
-              }
-              {contentTitle === "Ligas" &&
-                <div>
-                <img src={c.logoDaLiga} />
-                <p>{c.nomeDaLiga}</p>
-                </div>
-              }
-              {contentTitle === "Equipas" &&
-                <div>
-                <img src={c.logoDaEquipa} />
-                <p>{c.nomeDaEquipa}</p>
-                <p>{c.sigla}</p>
-                <p>{c.pontos}Pts</p>
-                <p>{c.golos}Golos</p>
-                </div>
-              }
-              {contentTitle === "Jogos" &&
-                <div className='mainContentLineJogos'>
-                  <p>{c.equipaDaCasa.nomeDaEquipa} </p>
-                  <img src={c.equipaDaCasa.logoDaEquipa} />
-                  <p>X</p>
-                  <img src={c.equipaDeFora.logoDaEquipa} />
-                  <p>{c.equipaDeFora.nomeDaEquipa} </p>
-                </div>  
-              }
-
-              <button id={c.id} onClick={() => deleteLine(c.id)}>
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </button>
-            </div>  
-            )}
+      <body className='body'>
+      <div class="container">
+          <div class="left">
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Ligas")}>
+              <p className='sideBarButtonsName'>Ligas</p>
+            </button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Equipas")}>
+              <p className='sideBarButtonsName'>Equipas</p>
+            </button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Jogadores")}>
+              <p className='sideBarButtonsName'>Jogadores</p>
+            </button>
+            <button className='sideBarButtons' onClick={() => handleButtonClick("Jogos")}>
+              <p className='sideBarButtonsName'>Jogos</p>
+            </button>
           </div>
-        
-        }
-      </div>
-      <div className='rightDiv'>
-      <button className='addButton'>
-        <FontAwesomeIcon icon={faPlus} className='addIcon'/>
-        <LigaCreate onUpdateMainSection={handleButtonClick} />
-      </button>
+          <div class="main">
+            {contentTitle && <h1 className='mainContentTitle'>{contentTitle}</h1>}
+            {content && 
+              <div className='mainContentLista'>
+                {content.map((c) => 
+                <div className='mainContentLine'>
+                  {contentTitle === "Jogadores" &&
+                    <div>
+                      <img src={c.fotoDoJogador} />
+                      <p>{c.nomeDoJogador}</p>
+                    </div>
+                  }
+                  {contentTitle === "Ligas" &&
+                    <div>
+                    <img src={c.logoDaLiga} />
+                    <Link className='links' to={`/Liga/${c.id}`}>{c.nomeDaLiga}</Link>
+                    
+                    </div>
+                  }
+                  {contentTitle === "Equipas" &&
+                    <div>
+                    <img src={c.logoDaEquipa} />
+                    <Link className='links' to={`/Equipa/${c.id}`}>{c.nomeDaEquipa}</Link>
+                    </div>
+                  }
+                  {contentTitle === "Jogos" &&
+                    <div className='mainContentLineJogos'>
+                      <Link className='links' to={`/Equipa/${c.equipaDaCasa.id}`}>{c.equipaDaCasa.nomeDaEquipa}</Link>
+                      <img src={c.equipaDaCasa.logoDaEquipa} />
+                      <div>
+                        <p>{formateDateToHourAndMinutes(c.horaDoJogo)}</p>
+                        <p>X</p>
+                      </div>
+                      <img src={c.equipaDeFora.logoDaEquipa} />
+                      <Link className='links' to={`/Equipa/${c.equipaDeFora.id}`}>{c.equipaDeFora.nomeDaEquipa}</Link>
+                    </div>  
+                  }
 
+                  <button id={c.id} className='iconApagar' onClick={() => deleteLine(c.id)}>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </button>
+                </div>  
+                )}
+              </div>
+            }
+        </div>
+          <div class="right">
+            {createWhat}
+          </div>
       </div>
-    </div>
+      </body>
     );
 };
 
@@ -201,4 +223,4 @@ function BotoesComPoppup(){
   )
 }
 
-export default Admin;
+export default AdminTwo;

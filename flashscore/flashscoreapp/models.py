@@ -38,3 +38,6 @@ class Jogo(models.Model):
     liga = models.ForeignKey(Liga, on_delete=models.CASCADE, default=1)
     horaDoJogo = models.DateTimeField()
 
+class Favoritos(models.Model):
+    equipa = models.ForeignKey('Equipa', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

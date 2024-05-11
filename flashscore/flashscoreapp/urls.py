@@ -43,12 +43,17 @@ urlpatterns = [
     path("equipas", views.equipas),
     path("jogadores", views.jogadores),
     path("jogos", views.jogos),
+    path('todosJogos', views.todosJogos),
     path("ligasejogos",views.ligasEJogos),
     path("liga/<int:liga_id>", views.liga),
+    path("jogador/<int:jogador_id>", views.jogador),
     path("deleteLiga/<int:id>/", views.deleteLiga),
     path("deleteEquipa/<int:id>/", views.deleteEquipa),
     path("deleteJogador/<int:id>/", views.deleteJogador),
     path("deleteJogo/<int:id>/", views.deleteJogo),
+    path("equipa/<int:equipa_id>", views.equipa),
+    path('api/login/', views.loginViewZe, name='login'),
+    path('api/register/', views.registerViewZe, name='register'),
 
 
 

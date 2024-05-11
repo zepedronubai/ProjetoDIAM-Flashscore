@@ -1,6 +1,6 @@
 function RightSection(){
     return(
-        <div className="rightSection">
+        <div className="right">
             <h2>Right Section</h2>
         </div>
     )
