@@ -223,14 +223,17 @@ class userFavoritos(APIView):
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
 @api_view(['DELETE'])
 @permission_classes([AllowAny])      
-def deleteLiga(self, id=None):
+def deleteLiga(request, id=None):
         try:
             liga = Liga.objects.get(pk=id)
         except Liga.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        liga.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.is_authenticated and request.user.is_superuser:
+            liga.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
 @api_view(['DELETE'])
@@ -368,8 +371,6 @@ class UserInfoView(APIView):
 @api_view(['GET'])
 def check_auth(request):
     token = request.data.get('token')
-    print(token)
-    print("dsadasdad")
     if token:
         return Response({"user": request.data}, status=status.HTTP_200_OK)
     else:

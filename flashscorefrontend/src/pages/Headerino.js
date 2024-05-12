@@ -67,7 +67,8 @@ useEffect(() => {
             localStorage.removeItem('token');
             localStorage.removeItem('username');
             setIsAuthenticated(false);
-            // Perform additional actions after successful logout, such as redirecting the user
+            alert("Logout efetuado com sucesso!")
+            window.location.href = '/Login';
         } catch (error) {
             console.error('Logout error:', error);
             // Handle logout error, if any

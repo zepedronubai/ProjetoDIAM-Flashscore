@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
@@ -11,6 +12,7 @@ export const Login = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     const handleLogin = () => {
+
       axios.post('http://127.0.0.1:8000/login/', { username, password })
         .then(response => {
           console.log(response.data.token);
@@ -19,11 +21,11 @@ export const Login = () => {
             localStorage.setItem('username', username)
             window.dispatchEvent(new Event("storage"));
             console.log(username)
-
+            alert("Login efetuado com sucesso!")
         })
         .catch(error => {
           console.error(error);
-          // Handle login error
+          alert("Credenciais erradas!")
         });
     };
   
@@ -31,11 +33,12 @@ export const Login = () => {
       axios.post('http://127.0.0.1:8000/register/', { username, email, password })
         .then(response => {
           console.log(response.data);
-          // Handle successful registration
+          alert("User registado com sucesso!")
+          window.location.href = '/Login';
         })
         .catch(error => {
           console.error(error);
-          // Handle registration error
+          alert("Erro ao registar!")
         });
     };
   

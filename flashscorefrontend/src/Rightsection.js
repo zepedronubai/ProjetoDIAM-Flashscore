@@ -1,7 +1,7 @@
 function RightSection(){
     return(
         <div className="right">
-            <h2>Right Section</h2>
+            <h2></h2>
         </div>
     )
 }
