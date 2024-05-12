@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 
-const Login = () => {
+
+export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [isLoginForm, setIsLoginForm] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     const handleLogin = () => {
-      axios.post('http://127.0.0.1:8000/api/login/', { email, password })
+      axios.post('http://127.0.0.1:8000/login/', { username, password })
         .then(response => {
-          console.log(response.data);
-          // Handle successful login
+          console.log(response.data.token);
+            setIsLoggedIn(true);
+            localStorage.setItem('token' , response.data.token)
+            localStorage.setItem('username', username)
+            window.dispatchEvent(new Event("storage"));
+            console.log(username)
+
         })
         .catch(error => {
           console.error(error);
@@ -21,7 +28,7 @@ const Login = () => {
     };
   
     const handleRegister = () => {
-      axios.post('http://127.0.0.1:8000/api/register/', { username, email, password })
+      axios.post('http://127.0.0.1:8000/register/', { username, email, password })
         .then(response => {
           console.log(response.data);
           // Handle successful registration
@@ -36,7 +43,7 @@ const Login = () => {
     <div className="login-container">
       <h2>{isLoginForm ? 'Login' : 'Register'}</h2>
       <form>
-        {!isLoginForm && (
+
           <div className="input-field">
             <label htmlFor="username">Username</label>
             <input
@@ -46,7 +53,8 @@ const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-        )}
+
+        {!isLoginForm && (
         <div className="input-field">
           <label htmlFor="email">Email</label>
           <input
@@ -56,6 +64,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        )}
         <div className="input-field">
           <label htmlFor="password">Password</label>
           <input

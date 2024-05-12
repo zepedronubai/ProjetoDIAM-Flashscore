@@ -308,6 +308,7 @@ class LoginView(APIView):
             return Response({'error': 'Por favor, forneça tanto o nome de usuário quanto a senha.'}, status=status.HTTP_400_BAD_REQUEST)
 
         user = authenticate(username=username, password=password)
+        login(request, user)
 
         if not user:
             return Response({'error': 'Credenciais inválidas'}, status=status.HTTP_400_BAD_REQUEST)
@@ -322,8 +323,9 @@ class LogoutView(APIView):
         token = request.data.get('token')
 
         if token:
-            print(Token.objects.filter(key=token))
+
             Token.objects.filter(key=token).delete()
+            logout(request)
 
             return Response({'message': 'Successfully logged out'})
 
@@ -361,6 +363,20 @@ class UserInfoView(APIView):
 
             }
         return Response(data)
+
+
+@api_view(['GET'])
+def check_auth(request):
+    token = request.data.get('token')
+    print(token)
+    print("dsadasdad")
+    if token:
+        return Response({"user": request.data}, status=status.HTTP_200_OK)
+    else:
+        return Response({"user": request.data}, status=status.HTTP_302_FOUND)
+
+
+
 
 
 def registarutilizador(request):

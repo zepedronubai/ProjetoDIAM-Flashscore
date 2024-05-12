@@ -1,7 +1,9 @@
 import './Headerino.css';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import Login, {username} from './Login'
+
 
 function Headerino(){
 
@@ -9,8 +11,9 @@ function Headerino(){
     const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [showPagina, setShowPagina] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(null);
     const [userData, setUserData] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const toggleLoginForm = () => {
         setShowLoginForm(!showLoginForm);
@@ -22,30 +25,33 @@ function Headerino(){
         setShowLoginForm(false);
     };
 
+    window.addEventListener('storage', () => {
+    console.log("Change to local storage!");
+    setUsername(localStorage.getItem('username'));
+    })
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        const username = e.target.elements.username.value;
-        const password = e.target.elements.password.value;
+useEffect(() => {
+    checkAuthentication();
+  },[isAuthenticated,username]);
 
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/login/', {
-                username: username,
-                password: password
-            });
+       const checkAuthentication = async () => {
+      try {
 
-            // Handle successful login response
-            console.log('Login successful:', response.data);
-            setIsLoggedIn(true);
-            setUsername(username);
-            localStorage.setItem('token', response.data.token);
 
-            } catch (error) {
-            // Handle login error
-            console.error('Login error:', error);
-            alert('Credenciais Inválidas')
+        if(localStorage.getItem('token') !== null){
+            setIsAuthenticated(true);
+
+        }else{
+            setIsAuthenticated(false);
         }
+
+      } catch (error) {
+        console.error('Error checking authentication:', error);
+
+      }
     };
+
+
 
     const handleLogout = async (e) => {
 
@@ -57,7 +63,10 @@ function Headerino(){
         });
             console.log('Logout successful:', response.data);
             setIsLoggedIn(false);
-            setUsername('');
+            setUsername(null);
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            setIsAuthenticated(false);
             // Perform additional actions after successful logout, such as redirecting the user
         } catch (error) {
             console.error('Logout error:', error);
@@ -66,7 +75,7 @@ function Headerino(){
     };
 
 
-    const handleRegistration = async (e) => {
+    /*const handleRegistration = async (e) => {
     e.preventDefault();
     const username = e.target.elements.username.value;
     const email = e.target.elements.email.value;
@@ -110,7 +119,7 @@ function Headerino(){
         // Handle authentication error or other errors
       }
 
-}
+}*/
     let searchBarShowing = 0
     
 
@@ -126,11 +135,24 @@ function Headerino(){
             <div className="headerRight">
                 <Link to={`/Favoritos`} className='ligaNome'><i className="far fa-star"/></Link>
                 <button><i className="fas fa-bars"></i></button>
+
+
+
+
+                {isAuthenticated ? (
+                <>
+                    <span>Welcome, {username}</span>
+                    <button onClick={handleLogout} ><i className="fas fa-sign-out-alt"></i>Logout</button>
+                    </>
+                ) : (
                 <Link to={`/Login`} className='ligaNome'><i className="fas fa-user"/></Link>
+                )}
+
+
                  {/* {isLoggedIn ? (
                  <>
                     <span>Welcome, {username}</span>
-                    <button onClick={handleLogout} ><i className="fas fa-sign-out-alt"></i>Logout</button>
+
                     <button onClick={fetchUserData} ><i className="paginapessoal"></i> Pagina Pessoal</button>
                     </>
                 ) : (
