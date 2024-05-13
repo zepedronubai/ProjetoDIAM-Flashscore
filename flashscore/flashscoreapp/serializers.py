@@ -11,7 +11,7 @@ class NacionalidadeSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['id','username', 'email', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -93,4 +93,12 @@ class OnlyOneJogoSerializer(serializers.ModelSerializer):
 class FavoritosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favoritos
-        fields = ['equipa']
+        fields = ['id', 'equipa', 'user']
+        
+    def validate(self, data):
+        equipa = data['equipa']
+        user = data['user']
+        
+        # Add any additional validation logic here
+        
+        return data

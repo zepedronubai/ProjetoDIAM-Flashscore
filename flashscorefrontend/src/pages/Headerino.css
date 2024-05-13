@@ -32,14 +32,27 @@
 .headerRight {
     margin-right: 12%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100px;
 }
 
-.headerMid{
-    
+.favoritos{
+    margin: auto 0;
+    font-weight: 800;
 }
+
+.botoesHeader{
+    margin: 0 10px;
+}
+
+.botoesHeader i{
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
 
 .headerRight button {
     background: none;
@@ -51,6 +64,7 @@
 /* Adjust icon size as needed */
 .headerRight button i {
     font-size: 1.2rem;
+    font-weight: 800;
 }
 
 @media screen and (max-width: 600px) {
@@ -64,6 +78,6 @@
 
     .headerRight {
         margin-right:6% ;
-        width: 60px;
+        width: 66px;
     }
 }

@@ -17,6 +17,58 @@ function Equipa() {
     });
     }, [equipaId]);
 
+    const [userData, setUserData] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+      
+      useEffect(() => {
+          checkAuthentication();
+      },[isAuthenticated]);
+      
+             const checkAuthentication = async () => {
+            try {
+      
+      
+              if(localStorage.getItem('token') !== null){
+                  setIsAuthenticated(true);
+                  axios.get(`http://127.0.0.1:8000/profile/${localStorage.getItem('username')}`)
+                  .then(response => {
+                    setUserData(response.data);
+                    console.log("guardado")
+                    console.log(response.data)
+                  })
+                  .catch(error => {
+                    console.error('Error fetching user data:', error);
+                  });
+              }else{
+                  setIsAuthenticated(false);
+              }
+      
+            } catch (error) {
+              console.error('Error checking authentication:', error);
+      
+            }
+          };
+
+
+
+    const darFavorito = () => {
+      if (userData && isAuthenticated){
+        const favorito = {
+          "equipa": equipaId,
+          "user" : userData.user.id      
+        }
+        axios.post(`http://127.0.0.1:8000/favoritos/?username=${userData.user.username}`, favorito)
+              .then(response => {
+                window.alert('Favorito created successfully!');
+              })
+              .catch(error => {
+                console.error('Error a dar favorito', error);
+              });
+
+      }
+        console.log("oi")
+    };
 
   return (
     <div className='container'>
@@ -27,8 +79,9 @@ function Equipa() {
     {equipa && (
       <div className="team-info">
         <section className='fotoENome'>
-        <img src='{equipa.equipa}'></img>
-        <h2>{equipa.equipa.nomeDaEquipa}</h2>
+          <img src='{equipa.equipa}'></img>
+          <h2>{equipa.equipa.nomeDaEquipa}</h2>
+          <a href onClick={darFavorito}><i className="far fa-star"/></a>
         </section>
         <section className='equipaInfo'>
           <p>Sigla: {equipa.equipa.sigla}</p>

@@ -211,14 +211,45 @@ def equipa(request, equipa_id):
     }
     return Response(response_data)
 
-@api_view(['GET'])
-class userFavoritos(APIView):
-    def get(self, request):
-        user = request.user
-        favoritos = Favoritos.objects.filter(user=user)
-        equipas = [favorito.equipa for favorito in favoritos]
-        serializer = EquipaSerializer(equipas, many=True)
-        return Response(serializer.data)
+@permission_classes([AllowAny]) 
+@api_view(['GET', 'POST','DELETE'])
+def userFavoritos(request):
+    if request.method == 'GET':
+        username = request.query_params.get('username')
+        if username:
+            try:
+                user = User.objects.get(username=username)
+                favoritos = Favoritos.objects.filter(user=user)
+                equipas = [favorito.equipa for favorito in favoritos]
+                serializer = EquipaSerializer(equipas, many=True)
+                return Response(serializer.data)
+            except User.DoesNotExist:
+                return Response({'error': 'User not found'}, status=404)
+        else:
+            return Response({'error': 'Username not provided'}, status=400)
+    elif request.method == 'POST':
+        serializer = FavoritosSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        # Get username and favorito ID from request parameters
+        username = request.data.get('username')
+        favorito_id = request.data.get('favoritoId')
+        print(username)
+        print(favorito_id)
+        if username and favorito_id:
+            try:
+                user = User.objects.get(username=username)
+                # Check if the Favorito exists and belongs to the user
+                favorito = Favoritos.objects.get(id=favorito_id, user=user)
+                favorito.delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            except (User.DoesNotExist, Favoritos.DoesNotExist):
+                return Response({'error': 'User or Favorito not found'}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({'error': 'Username or Favorito ID not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
 @api_view(['DELETE'])
@@ -271,19 +302,6 @@ def deleteJogo(self, id=None):
         liga.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['POST'])
-class loginViewZe(APIView):
-    def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
-            # Perform login action here, such as creating a session or generating a token
-            # For example, you can use Django's login method to create a session
-            login(request, user)
-            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
-        else:
-            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 @api_view(['POST'])
 class registerViewZe(APIView):
@@ -421,6 +439,19 @@ def fazer_upload(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('flashscoreapp:index'))
+
+@api_view(['GET'])
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
+    user_serializer = UserSerializer(user)
+
+    response_data = {
+        'user': user_serializer.data
+    }
+    return Response(response_data)
 
 
 def login_view(request):

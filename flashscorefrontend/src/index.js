@@ -22,6 +22,7 @@ import {Link} from "react-router-dom";
 //icons import 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import Profile from './pages/Profile';
 
 library.add(faTrashAlt);
 
@@ -40,7 +41,8 @@ ReactDOM.createRoot(rootElement).render(
         <Route exact path="/Equipa/:equipaID" element={<Equipa />} />
         <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Jogador/:jogadorID" element={<Jogador />} />
-        <Route exact path="/Favoritos/:userID" element={<Favoritos />} />
+        <Route exact path="/Favoritos" element={<Favoritos />} />
+        <Route exact path="/Profile" element={<Profile />} />
       </Routes>
     </App>
   </Router>

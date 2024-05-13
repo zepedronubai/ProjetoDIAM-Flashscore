@@ -53,8 +53,10 @@ urlpatterns = [
     path("deleteJogador/<int:id>/", views.deleteJogador),
     path("deleteJogo/<int:id>/", views.deleteJogo),
     path("equipa/<int:equipa_id>", views.equipa),
-    path('api/login/', views.loginViewZe, name='login'),
+    path('profile/<str:username>/', views.profile, name='login'),
     path('api/register/', views.registerViewZe, name='register'),
+    path('favoritos/', views.userFavoritos),
+
 
 
 

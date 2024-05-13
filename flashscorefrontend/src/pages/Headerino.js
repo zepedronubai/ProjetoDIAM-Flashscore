@@ -30,9 +30,9 @@ function Headerino(){
     setUsername(localStorage.getItem('username'));
     })
 
-useEffect(() => {
-    checkAuthentication();
-  },[isAuthenticated,username]);
+    useEffect(() => {
+        checkAuthentication();
+    },[isAuthenticated,username]);
 
        const checkAuthentication = async () => {
       try {
@@ -134,57 +134,18 @@ useEffect(() => {
                 
             </div>
             <div className="headerRight">
-                <Link to={`/Favoritos`} className='ligaNome'><i className="far fa-star"/></Link>
-                <button><i className="fas fa-bars"></i></button>
-
-
-
-
+                <Link to={`/Favoritos`} className='botoesHeader'><i className="far fa-star"/></Link>
+                
                 {isAuthenticated ? (
                 <>
-                    <span>Welcome, {username}</span>
-                    <button onClick={handleLogout} ><i className="fas fa-sign-out-alt"></i>Logout</button>
+                    {/* <span>Welcome, {username}</span> */}
+                    <Link to={`/Profile`} className='botoesHeader'><i className="fas fa-user"/></Link>
+                    <button onClick={handleLogout} className='botoesHeader'><i className="fas fa-sign-out-alt"></i></button>
                     </>
                 ) : (
-                <Link to={`/Login`} className='ligaNome'><i className="fas fa-user"/></Link>
+                <Link to={`/Login`} className='botoesHeader'><i className="fas fa-user"/></Link>
                 )}
 
-
-                 {/* {isLoggedIn ? (
-                 <>
-                    <span>Welcome, {username}</span>
-
-                    <button onClick={fetchUserData} ><i className="paginapessoal"></i> Pagina Pessoal</button>
-                    </>
-                ) : (
-                    <>
-                        <button onClick={toggleLoginForm}><i className="fas fa-sign-in-alt"></i> Login</button>
-                        <button onClick={toggleRegisterForm}><i className="fas fa-user-plus"></i> Register</button>
-                    </>
-                )}
-
-                {showLoginForm && !isLoggedIn && (
-                    <form className="dropdownForm" onSubmit={handleLogin}>
-                        <input type="text" placeholder="Username" name="username"/>
-                        <input type="password" placeholder="Password" name="password"/>
-                        <button type="submit">Login</button>
-                    </form>
-                )}
-                {showRegisterForm && !isLoggedIn && (
-                    <form className="dropdownForm" onSubmit={handleRegistration}>
-                        <input type="text" placeholder="username" name="username"/>
-                        <input type="email" placeholder="email"name="email"/>
-                        <input type="password" placeholder="password" name="password"/>
-                        <button type="submit">Register</button>
-                    </form>
-                )}
-                <div ><i className="UserDetailsElement"></i>
-                     {showPagina && userData && isLoggedIn && (
-                        <>
-                         <p><strong>Name:</strong> {userData.username}</p>
-                        <p><strong>Email:</strong> {userData.email}</p>
-                         </>
-                     )} */}
                 </div>
 
 
