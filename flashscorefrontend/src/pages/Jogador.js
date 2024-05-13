@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './Jogador.css';
-import Ligas from '../Ligas';
+import Ligas from './Ligas';
 
 function Jogador() {
   const [jogador, setJogador] = useState(null);

@@ -82,14 +82,14 @@ function Headerino(){
 
     return(
         <header className="header">
-            <div className="headerLeft">
+            <section className="headerLeft">
                 <Link className='link' to={`/`}><h2>FLASHSCORE</h2></Link>
                 
-            </div>
-            <div className="headerMid">
+            </section>
+            <section className="headerMid">
                 
-            </div>
-            <div className="headerRight">
+            </section>
+            <section className="headerRight">
                 <Link to={`/Favoritos`} className='botoesHeader'><i className="far fa-star"/></Link>
                 
                 {isAuthenticated ? (
@@ -102,7 +102,7 @@ function Headerino(){
                 <Link to={`/Login`} className='botoesHeader'><i className="fas fa-user"/></Link>
                 )}
 
-                </div>
+                </section>
 
 
 

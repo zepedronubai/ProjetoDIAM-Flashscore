@@ -7,14 +7,12 @@ import reportWebVitals from './reportWebVitals';
 import Headerino from './pages/Headerino';
 import Liga from './pages/Liga';
 import Homepage from './pages/Homepage';
-import TesteRouter from './TesteRouter';
 import Login from './pages/Login';
 import Jogador from './pages/Jogador';
 import Favoritos from './pages/Favoritos';
 import RightSection from './Rightsection'
 // import Admin from './Admin'
 import AdminTwo from './pages/AdminTwo';
-import FormsToCreateTry from './javenhoaqui/FormsToCreateTry';
 import Equipa from './pages/Equipa';
 //router
 import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';

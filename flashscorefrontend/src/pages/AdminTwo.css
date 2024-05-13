@@ -63,14 +63,14 @@
   }
 
 
-  .mainContentLine div{
+  .mainContentLine section{
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
   }
 
-  .mainContentLine div p{
+  .mainContentLine section p{
     margin-left: 0;
 
   }
@@ -82,14 +82,14 @@
     justify-content: space-around;
   }
 
-  .mainContentLineJogos div{
+  .mainContentLineJogos section{
     display: flex;
     flex-direction: column;
     margin: 0 15px;
     font-size: 12px;
   }
 
-  .mainContentLineJogos div p{
+  .mainContentLineJogos section p{
     font-size: 12px;
   }
 
@@ -156,5 +156,6 @@
     }
 
     .right{
+      margin-top: 20px;
     }
   }

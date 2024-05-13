@@ -22,12 +22,12 @@ function LigaCreate({ onUpdateMainSection }){
           onUpdateMainSection("Ligas");
         })
         .catch(error => {
-          console.error('Error creating Liga object:', error);
+          window.alert('Erro ao criar Liga');
         });
     };
   
     return (
-      <div className='allStuffFormsToCreate'>
+      <section className='allStuffFormsToCreate'>
         <h2>Create Liga</h2>
         <form onSubmit={handleFormSubmit}>
             <input type="text" placeholder='Nome' value={nomeDaLiga} onChange={(e) => setNomeDaLiga(e.target.value)} required />
@@ -38,7 +38,7 @@ function LigaCreate({ onUpdateMainSection }){
             <input type="text" value={logoDaLiga} onChange={(e) => setLogoDaLiga(e.target.value)} placeholder='Logo' />
           <button type="submit">Create Liga</button>
         </form>
-      </div>
+      </section>
     );
   }
   
@@ -78,12 +78,12 @@ function LigaCreate({ onUpdateMainSection }){
           // Update main section with the newly created Equipa object
         })
         .catch(error => {
-          console.error('Error creating Equipa object:', error);
+          window.alert('Erro ao criar Equipa');
         });
     };
   
     return (
-      <div className='allStuffFormsToCreate'>
+      <section className='allStuffFormsToCreate'>
         <h2>Create Equipa</h2>
         <form className='formsForm' onSubmit={handleFormSubmit}>
          
@@ -99,7 +99,7 @@ function LigaCreate({ onUpdateMainSection }){
             <input type="text" placeholder='Logo Da Equipa' value={logoDaEquipa} onChange={(e) => setLogoDaEquipa(e.target.value)} />
           <button type="submit">Create Equipa</button>
         </form>
-      </div>
+      </section>
     );
   }
   
@@ -120,6 +120,7 @@ function LigaCreate({ onUpdateMainSection }){
           setEquipas(response.data);
         })
         .catch(error => {
+          
           console.error('Error fetching Equipas:', error);
         });
     }, []);
@@ -153,22 +154,21 @@ function LigaCreate({ onUpdateMainSection }){
       };
       axios.post('http://127.0.0.1:8000/jogadores', formData)
         .then(response => {
-          window.alert('Jogador created successfully!');
+          window.alert('Jogador criado com sucesso!');
           onUpdateMainSection("Jogadores");
         })
         .catch(error => {
-          console.error('Error creating Jogador object:', error);
+          window.alert('Erro ao criar jogador');
         });
     };
   
     return (
-      <div className='allStuffFormsToCreate'>
+      <section className='allStuffFormsToCreate'>
         <h2>Create Jogador</h2>
         <form onSubmit={handleFormSubmit}>
           <input type="text" placeholder='Nome do Jogador' value={nomeDoJogador} onChange={(e) => setNomeDoJogador(e.target.value)} />
           <input type="number" placeholder='Número do Jogador' value={nrDoJogador} onChange={(e) => setNrDoJogador(e.target.value)} />
           <input type="datetime-local" placeholder='Data de Nascimento' value={dataDeNascimento} onChange={(e) => setDataDeNascimento(e.target.value)} />
-          {/* Assume you have a dropdown component for selecting Nacionalidade */}
           <select value={nacionalidadedoJogador} onChange={(e) => setNacionalidadedoJogador(e.target.value)}>
             <option value="">Nacionalidade</option>
             {nacionalidades.map(nacionalidade => (
@@ -184,7 +184,7 @@ function LigaCreate({ onUpdateMainSection }){
           <input type="text" placeholder='Foto do Jogador' value={fotoDoJogador} onChange={(e) => setFotoDoJogador(e.target.value)} />
           <button type="submit">Create Jogador</button>
         </form>
-      </div>
+      </section>
     );
   }
   
@@ -241,12 +241,12 @@ function LigaCreate({ onUpdateMainSection }){
           onUpdateMainSection("Jogos");
         })
         .catch(error => {
-          console.error('Error creating Jogo object:', error.response.data);
+          window.alert('Erro ao criar jogo');
         });
     };
   
     return (
-      <div className='allStuffFormsToCreate'>
+      <section className='allStuffFormsToCreate'>
         <h2>Create Jogo</h2>
         <form onSubmit={handleFormSubmit}>
           <select value={liga} onChange={(e) => setLiga(e.target.value)}>
@@ -271,7 +271,7 @@ function LigaCreate({ onUpdateMainSection }){
           <input type="datetime-local" placeholder='Hora do Jogo' value={horaDoJogo} onChange={(e) => setHoraDoJogo(e.target.value)} />
           <button type="submit">Create Jogo</button>
         </form>
-      </div>
+      </section>
     );
   }
 

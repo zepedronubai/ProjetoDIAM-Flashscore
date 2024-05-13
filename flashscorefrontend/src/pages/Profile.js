@@ -41,24 +41,24 @@ function Profile() {
 
   if (!userData || !isAuthenticated) {
     // If user data is not yet fetched, display loading or login prompt
-    return <div>Loading...</div>;
+    return <section>Loading...</section>;
   }
 
   return (
-    <div className="userDataContainer">
+    <section className="userDataContainer">
     <h1 className="userDataTitle">User Information</h1>
-    <div className="userData">
-        <div className="userDataItem">
+    <section className="userData">
+        <section className="userDataItem">
             <span className="userDataLabel">Username:</span>
             <span className="userDataValue">{userData.user.username}</span>
-        </div>
-        <div className="userDataItem">
+        </section>
+        <section className="userDataItem">
             <span className="userDataLabel">Email:</span>
             <span className="userDataValue">{userData.user.email}</span>
-        </div>
+        </section>
         {/* Add more user information items as needed */}
-    </div>
-</div>
+    </section>
+</section>
   );
 }
 

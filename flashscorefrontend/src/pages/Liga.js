@@ -1,7 +1,7 @@
     import axios from 'axios';
     import React, { useState, useEffect } from 'react';
     import './Liga.css'
-    import Ligas from '../Ligas';
+    import Ligas from './Ligas';
     import RightSection from '../Rightsection';
     import { useParams } from 'react-router-dom';
     import { Link } from "react-router-dom";
@@ -13,11 +13,11 @@
         console.log(ligaIdInt)
 
         return(
-                <div className='container'>
+                <section className='container'>
                     <Ligas/>
                     <LigaInfoSection ligaId={ligaId}/>
                     <RightSection/>
-                </div>
+                </section>
             )
     
     }
@@ -62,38 +62,38 @@
         else{
             return(
                 <>
-                    <div className='main'>
-                        <div className='ligaName'>
+                    <section className='main'>
+                        <section className='ligaName'>
                             <img src={liga.logoDaLiga}/>
                             <h1>{liga.nomeDaLiga}</h1>
-                        </div>
-                        <div className='equipas'>
-                            <div className='nomesColunas'>
+                        </section>
+                        <section className='equipas'>
+                            <section className='nomesColunas'>
                                 <p className='firstNome'>#</p>
-                                <div className="restoNomes">
+                                <section className="restoNomes">
                                     <p className='nomeToPutMaring'>GM</p>
                                     <p >GS</p>
                                     <p >Pts</p>    
-                                </div>    
-                            </div>
+                                </section>    
+                            </section>
                             {equipas.map((equipa,index) => (
-                                <div className='equipaDiv'>
-                                    <div className='posiFotoENomeEquipa'>
+                                <section className='equipaDiv'>
+                                    <section className='posiFotoENomeEquipa'>
                                         <p className='orderNumber'>{index + 1}</p>
                                         <img src='#'/>
                                         <Link to={`/Equipa/${equipa.id}`} className='nomeEquipa'>{equipa.nomeDaEquipa}</Link>
                                         
-                                    </div>
-                                    <div className='restoInfoEquipa'>
+                                    </section>
+                                    <section className='restoInfoEquipa'>
                                         <p className=''>{equipa.golos}</p>
                                         <p className=''>{equipa.golosSofridos}</p>
                                         <p className=''>{equipa.pontos}</p>
-                                    </div>
-                                </div>
+                                    </section>
+                                </section>
                                 
                             ))}
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 </>
             )
         }

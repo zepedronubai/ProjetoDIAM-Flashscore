@@ -220,9 +220,14 @@ def userFavoritos(request):
             try:
                 user = User.objects.get(username=username)
                 favoritos = Favoritos.objects.filter(user=user)
+                favoritosSerializer = FavoritosSerializer(favoritos, many=True)
                 equipas = [favorito.equipa for favorito in favoritos]
-                serializer = EquipaSerializer(equipas, many=True)
-                return Response(serializer.data)
+                equipasSerializer = EquipaSerializer(equipas, many=True)
+                data = {
+                    'favoritos': favoritosSerializer.data,
+                    'equipas': equipasSerializer.data
+                }
+                return Response(data)
             except User.DoesNotExist:
                 return Response({'error': 'User not found'}, status=404)
         else:
@@ -235,15 +240,11 @@ def userFavoritos(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         # Get username and favorito ID from request parameters
-        username = request.data.get('username')
         favorito_id = request.data.get('favoritoId')
-        print(username)
         print(favorito_id)
-        if username and favorito_id:
+        if favorito_id:
             try:
-                user = User.objects.get(username=username)
-                # Check if the Favorito exists and belongs to the user
-                favorito = Favoritos.objects.get(id=favorito_id, user=user)
+                favorito = Favoritos.objects.get(id=favorito_id)
                 favorito.delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)
             except (User.DoesNotExist, Favoritos.DoesNotExist):
@@ -252,8 +253,7 @@ def userFavoritos(request):
             return Response({'error': 'Username or Favorito ID not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
-@api_view(['DELETE'])
-@permission_classes([AllowAny])      
+@api_view(['DELETE'])    
 def deleteLiga(request, id=None):
         try:
             liga = Liga.objects.get(pk=id)
@@ -267,40 +267,44 @@ def deleteLiga(request, id=None):
             return Response(status=status.HTTP_403_FORBIDDEN)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
-@api_view(['DELETE'])
-@permission_classes([AllowAny])      
-def deleteEquipa(self, id=None):
+@api_view(['DELETE'])     
+def deleteEquipa(request, id=None):
         try:
             liga = Equipa.objects.get(pk=id)
         except Equipa.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        if request.user.is_authenticated and request.user.is_superuser:
+            liga.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
-        liga.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
-@api_view(['DELETE'])
-@permission_classes([AllowAny])      
-def deleteJogador(self, id=None):
+@api_view(['DELETE'])  
+def deleteJogador(request, id=None):
         try:
             liga = Jogador.objects.get(pk=id)
         except Jogador.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-        liga.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.is_authenticated and request.user.is_superuser:
+            liga.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 #!!!!!!!!!!!!!!!!!!!!!! NÃO ESQUECER MUDAR, E ADICIONAR PERMISSOES
 @api_view(['DELETE'])
-@permission_classes([AllowAny])
-def deleteJogo(self, id=None):
+def deleteJogo(request, id=None):
         try:
             liga = Jogo.objects.get(pk=id)
         except Jogo.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-        liga.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.is_authenticated and request.user.is_superuser:
+            liga.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 @api_view(['POST'])

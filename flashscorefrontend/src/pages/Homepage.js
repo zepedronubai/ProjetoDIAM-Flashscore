@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 import axios from 'axios';
-import Ligas from '../Ligas';
+import Ligas from './Ligas';
 import RightSection from '../Rightsection';
 
 function Homepage(){
@@ -65,48 +65,52 @@ function MainSection(){
     }
     
     return(
-        <div className="main">
-            <div className="dataChanger">
+        <section className="main">
+            <section className="dataChanger">
                 <button className="arrow-button left-arrow" onClick={() => updateDateToBeFetched("back")}><p class="textDataChanger">&lt;</p></button>
                 <p className="textDataChanger">{dateToBeFetched}</p>
                 <button className="arrow-button right-arrow" onClick={() => updateDateToBeFetched("next")} ><p class="textDataChanger">&gt;</p></button>
-            </div>
+            </section>
 
-            <div className="jogosAtivos">
-            {jogos.map((liga) => (
-                <div key={liga.nomeDaLiga} className="cadaLigaComJogosContainer">
-                    <h2 className='nomeDaLiga'>{liga.nomeDaLiga}</h2>
-                    {liga.jogosDaLiga.map((jogo) => (
-                        <div key={jogo.id} className='jogoContainer'>
+            <section className="jogosAtivos">
+                {jogos && jogos.length > 0 ? (
+                    jogos.map((liga) => (
+                        <section key={liga.nomeDaLiga} className="cadaLigaComJogosContainer" >
+                            <h2 className='nomeDaLiga'>{liga.nomeDaLiga}</h2>
+                            {liga.jogosDaLiga.map((jogo) => (
+                                <section key={jogo.id} className='jogoContainer'>
 
-                            <div className='equipasDoJogoLeft'>
-                            <h4>{jogo.equipaDaCasa.nomeDaEquipa} </h4>
-                            <img src={jogo.equipaDaCasa.logoDaEquipa}/>
-                            </div>
-                            <div className='horaDoJogo'>
-                                <h5 className='hora'>{formateDateToHourAndMinutes(jogo.horaDoJogo)}</h5>
-                                <h5 className='x'>X</h5>
-                            </div>
-                            <div className='equipasDoJogoRight'>
-                            <img src={jogo.equipaDeFora.logoDaEquipa}/>
-                            <h4> {jogo.equipaDeFora.nomeDaEquipa} </h4>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ))}
-            </div>
-        </div>
+                                    <section className='equipasDoJogoLeft'>
+                                    <h4>{jogo.equipaDaCasa.nomeDaEquipa} </h4>
+                                    <img src={jogo.equipaDaCasa.logoDaEquipa}/>
+                                    </section>
+                                    <section className='horaDoJogo'>
+                                        <h5 className='hora'>{formateDateToHourAndMinutes(jogo.horaDoJogo)}</h5>
+                                        <h5 className='x'>X</h5>
+                                    </section>
+                                    <section className='equipasDoJogoRight'>
+                                    <img src={jogo.equipaDeFora.logoDaEquipa}/>
+                                    <h4> {jogo.equipaDeFora.nomeDaEquipa} </h4>
+                                    </section>
+                                </section>
+                            ))}
+                        </section>
+                    ))
+                ) : (
+                    <p className='noGames'>Não há jogos hoje</p>
+                )}
+            </section>
+        </section>
     )
 }
 
 return(
     <>
-        <div className="container">
+        <section className="container">
             <Ligas/>
             <MainSection/>
             <RightSection/>
-        </div>
+        </section>
     </>
 )
 

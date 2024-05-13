@@ -9,8 +9,8 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 //import functions to create objects
-import {LigaCreate,EquipaCreate, JogadorCreate, JogoCreate} from '../FormsToCreateObjects';
-import Ligas from '../Ligas';
+import {LigaCreate,EquipaCreate, JogadorCreate, JogoCreate} from './FormsToCreateObjects';
+import Ligas from './Ligas';
 
 function AdminTwo(){
     
@@ -114,8 +114,8 @@ function AdminTwo(){
 
     return (
       <body className='body'>
-      <div class="container">
-          <div class="left">
+      <section class="container">
+          <section class="left">
             <button className='sideBarButtons' onClick={() => handleButtonClick("Ligas")}>
               <p className='sideBarButtonsName'>Ligas</p>
             </button>
@@ -128,99 +128,60 @@ function AdminTwo(){
             <button className='sideBarButtons' onClick={() => handleButtonClick("Jogos")}>
               <p className='sideBarButtonsName'>Jogos</p>
             </button>
-          </div>
-          <div class="main">
+          </section>
+          <section class="main">
             {contentTitle && <h1 className='mainContentTitle'>{contentTitle}</h1>}
             {content && 
-              <div className='mainContentLista'>
+              <section className='mainContentLista'>
                 {content.map((c) => 
-                <div className='mainContentLine'>
+                <section className='mainContentLine'>
                   {contentTitle === "Jogadores" &&
-                    <div>
+                    <section>
                       <img src={c.fotoDoJogador} />
                       <p>{c.nomeDoJogador}</p>
-                    </div>
+                    </section>
                   }
                   {contentTitle === "Ligas" &&
-                    <div>
+                    <section>
                     <img src={c.logoDaLiga} />
                     <Link className='links' to={`/Liga/${c.id}`}>{c.nomeDaLiga}</Link>
                     
-                    </div>
+                    </section>
                   }
                   {contentTitle === "Equipas" &&
-                    <div>
+                    <section>
                     <img src={c.logoDaEquipa} />
                     <Link className='links' to={`/Equipa/${c.id}`}>{c.nomeDaEquipa}</Link>
-                    </div>
+                    </section>
                   }
                   {contentTitle === "Jogos" &&
-                    <div className='mainContentLineJogos'>
+                    <section className='mainContentLineJogos'>
                       <Link className='links' to={`/Equipa/${c.equipaDaCasa.id}`}>{c.equipaDaCasa.nomeDaEquipa}</Link>
                       <img src={c.equipaDaCasa.logoDaEquipa} />
-                      <div>
+                      <section>
                         <p>{formateDateToHourAndMinutes(c.horaDoJogo)}</p>
                         <p>X</p>
-                      </div>
+                      </section>
                       <img src={c.equipaDeFora.logoDaEquipa} />
                       <Link className='links' to={`/Equipa/${c.equipaDeFora.id}`}>{c.equipaDeFora.nomeDaEquipa}</Link>
-                    </div>  
+                    </section>  
                   }
 
                   <button id={c.id} className='iconApagar' onClick={() => deleteLine(c.id)}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </button>
-                </div>  
+                </section>  
                 )}
-              </div>
+              </section>
             }
-        </div>
-          <div class="right">
+        </section>
+          <section class="right">
             {createWhat}
-          </div>
-      </div>
+          </section>
+      </section>
       </body>
     );
 };
 
-function Teste(objetos){
-    if(objetos>0){
-        {objetos.map((objeto) =>(
-            <div></div>
-        ))}
-    }
-}
-
-
-function BotoesComPoppup(){
-  const [showPopup, setShowPopup] = useState(false);
-
-    const togglePopup = () => {
-      setShowPopup(!showPopup);
-    };
-  
-    const createWhat = "equipa"
-
-  return(
-    <div className="button-with-popup">
-        <button onClick={togglePopup}>Click Me</button>
-        {showPopup && 
-            <div className="popup">
-            <div class="container">
-            <h2>Registration Form</h2>
-            <form>
-                <input type="text" placeholder='Escolher foto' name="name" required/>
-                <input type="email" placeholder="Nome da Equipa" name="email" required/>
-                <input type="text" placeholder="Sigla" required/>
-              
-              <button type="submit">Submit</button>
-              </form>
-              </div>
-            
-            
-        </div>}
-      </div>
-  )
-}
 
 export default AdminTwo;

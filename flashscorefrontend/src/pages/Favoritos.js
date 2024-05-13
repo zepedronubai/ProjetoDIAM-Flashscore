@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Favoritos.css'
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const [userData, setUserData] = useState(null);
   const [favoritos, setFavoritos] = useState(null);
+  const [equipas, setEquipas] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     
+    const getEquipaName = (equipaId) => {
+      const equipa = equipas.find(equipa => equipa.id === equipaId);
+      return equipa ? equipa : 'Unknown';
+    };
+
     useEffect(() => {
         checkAuthentication();
     },[isAuthenticated]);
@@ -21,7 +28,8 @@ function Profile() {
               }
             })
             .then(response => {
-              setFavoritos(response.data)
+              setFavoritos(response.data.favoritos)
+              setEquipas(response.data.equipas)
               console.log('Additional data fetched:', response.data);
             })
             .catch(error => {
@@ -68,7 +76,7 @@ function Profile() {
                 if (response.status === 204) {
                     // Handle the 204 response status
                     console.log('Favorito deleted successfully');
-                    // Update your state or perform any other actions as needed
+                    setFavoritos(prevFavoritos => prevFavoritos.filter(favorito => favorito.id !== favoritoId));
                 } else {
                     // Handle other response statuses if necessary
                     console.log('Unexpected response status:', response.status);
@@ -83,33 +91,31 @@ function Profile() {
 
   if (!userData || !isAuthenticated) {
     // If user data is not yet fetched, display loading or login prompt
-    return <div>Loading...</div>;
+    return <section>Loading...</section>;
   }
 
   return (
     <>
-    <div className="leftSection">
-        <h2>Username: {userData.user.username}</h2>
-        <h2>ID: {userData.user.id}</h2>
-        <h2>Email: {userData.user.email}</h2>
-    </div>
 
-    <div className="rightSection">
+    <section className="main">
+        <h2 className='favoritosNome'>Favoritos</h2>
         {favoritos ? (
-            <div>
+            <section className='favoritos'>
+              <ul>
                 {favoritos.map(favorito => (
-                    <div className="ligaContainer" key={favorito.id}>
-                        <h3>Equipa: {favorito.nomeDaEquipa}</h3>
-                        <button className="removeButton" onClick={() => removerFavorito(favorito.id)}>
-                            <i className="far fa-star"/>
-                        </button>
-                    </div>
+                  <li key={favorito.id}>
+                    <Link to={`/Equipa/${getEquipaName(favorito.equipa).id}`} className='nomeEquipa'><h2>{getEquipaName(favorito.equipa).nomeDaEquipa}</h2></Link>
+                    <href className="removeButton" onClick={() => removerFavorito(favorito.id)}>
+                          <i className="far fa-star"/>
+                    </href>
+                  </li>
                 ))}
-            </div>
+              </ul>
+            </section>
         ) : (
             <p>Loading favoritos...</p>
         )}
-    </div>
+    </section>
 </>
 
   );

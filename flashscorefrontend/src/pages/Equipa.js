@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './Equipa.css'
-import Ligas from '../Ligas';
+import Ligas from './Ligas';
 
 function Equipa() {
     const [equipa, setEquipa] = useState(null);
@@ -52,32 +52,55 @@ function Equipa() {
 
 
 
-    const darFavorito = () => {
-      if (userData && isAuthenticated){
-        const favorito = {
-          "equipa": equipaId,
-          "user" : userData.user.id      
-        }
-        axios.post(`http://127.0.0.1:8000/favoritos/?username=${userData.user.username}`, favorito)
-              .then(response => {
-                window.alert('Favorito created successfully!');
+          const darFavorito = () => {
+            if (userData && isAuthenticated) {
+              const favorito = {
+                "equipa": equipaId,
+                "user": userData.user.id
+              };
+          
+              // Fetch the user's favorites
+              axios.get('http://127.0.0.1:8000/favoritos/', {
+                params: {
+                  username: userData.user.username
+                }
               })
-              .catch(error => {
-                console.error('Error a dar favorito', error);
-              });
-
-      }
-        console.log("oi")
-    };
+                .then(response => {
+                  const equipas = response.data.equipas;
+                  console.log(equipaId)
+                  console.log(equipas)
+                  // Check if the equipaId already exists in the user's favorites
+                  const isFavoritoExist = equipas.some(equipa => equipa.id == equipaId);
+                  console.log(isFavoritoExist)
+                  if (isFavoritoExist) {
+                    window.alert('Esta equipa já pertence aos favoritos');
+                  } else {
+                    // If the equipaId doesn't exist, add it to the favorites
+                    axios.post(`http://127.0.0.1:8000/favoritos/?username=${userData.user.username}`, favorito)
+                      .then(response => {
+                        window.alert('Equipa adicionada aos favoritos');
+                      })
+                      .catch(error => {
+                        console.error('Error a dar favorito', error);
+                      });
+                  }
+                })
+                .catch(error => {
+                  console.error('Error ao dar fetch aos favoritos:', error);
+                });
+            }
+            console.log("oi");
+          };
+          
 
   return (
-    <div className='container'>
-      <div className='left'>
+    <section className='container'>
+      <section className='left'>
         <Ligas/>
-      </div>
-    <div className="main">
+      </section>
+    <section className="main">
     {equipa && (
-      <div className="team-info">
+      <section className="team-info">
         <section className='fotoENome'>
           <img src='{equipa.equipa}'></img>
           <h2>{equipa.equipa.nomeDaEquipa}</h2>
@@ -92,7 +115,7 @@ function Equipa() {
         <ul className="jogadores">
           {equipa.jogadores.map((jogador) => (
             <li key={jogador.id} className="">
-              <div className="jogador">
+              <section className="jogador">
                 <section className='fotoENomeJogador'>
                 <img src={jogador.fotoDoJogador}/>
                 <p>{jogador.nomeDoJogador}</p>
@@ -101,16 +124,16 @@ function Equipa() {
                 <p>Nr: {jogador.nrDoJogador}</p>
                 <p>Golos: {jogador.golos}</p>
                 </section>
-              </div>
+              </section>
             </li>
           ))}
         </ul>
-      </div>
+      </section>
     )}
-  </div>
-  <div className='right'>
-        </div>
-  </div>
+  </section>
+  <section className='right'>
+        </section>
+  </section>
   
   );
 }

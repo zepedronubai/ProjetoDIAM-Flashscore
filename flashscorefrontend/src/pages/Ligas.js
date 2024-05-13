@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Ligas.css';
 import { Link } from "react-router-dom";
-import Liga from './pages/Liga';
+import Liga from './Liga';
 
 function Ligas(){
      //fetch das ligas para mostrar na section da esquerda

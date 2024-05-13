@@ -22,27 +22,3 @@ const App = ({ children }) => {
 }
 
 export default App;
-
-// export default function App() {
-//   return (
-//     <Router>
-//       <Routes>
-//       <Route exact path="/" component={TesteRouter} />
-//         <Route path="/ligas" component={Liga} />
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Homepage />} />
-//         <Route path="ligas" element={<Liga />} />
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// export default App;

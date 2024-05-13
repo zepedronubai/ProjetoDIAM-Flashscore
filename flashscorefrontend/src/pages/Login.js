@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
-
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -10,7 +8,6 @@ export const Login = () => {
     const [username, setUsername] = useState('');
     const [isLoginForm, setIsLoginForm] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
     const handleLogin = () => {
 
       axios.post('http://127.0.0.1:8000/login/', { username, password })
@@ -22,6 +19,7 @@ export const Login = () => {
             window.dispatchEvent(new Event("storage"));
             console.log(username)
             alert("Login efetuado com sucesso!")
+            window.location.href = '/';
         })
         .catch(error => {
           console.error(error);
