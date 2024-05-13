@@ -386,15 +386,6 @@ class UserInfoView(APIView):
         return Response(data)
 
 
-@api_view(['GET'])
-def check_auth(request):
-    token = request.data.get('token')
-    if token:
-        return Response({"user": request.data}, status=status.HTTP_200_OK)
-    else:
-        return Response({"user": request.data}, status=status.HTTP_302_FOUND)
-
-
 
 
 
@@ -498,5 +489,11 @@ def salvar_liga(request):
 
 
 
-
-
+@api_view(['GET'])
+def check_superuser(request, username):
+    try:
+        user = User.objects.get(username=username)
+        is_superuser = user.is_superuser
+        return JsonResponse({'is_superuser': is_superuser})
+    except User.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)

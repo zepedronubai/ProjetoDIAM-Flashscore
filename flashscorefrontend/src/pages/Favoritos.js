@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Favoritos.css'
 
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -86,30 +87,31 @@ function Profile() {
   }
 
   return (
-    <div>
-      <h1>Username: {userData.user.username}</h1>
-      <h1>Username: {userData.user.id}</h1>
-      <h1>Email: {userData.user.email}</h1>
-      {/* <p>Email: {userData.email}</p> */}
-      {/* Display other user information as needed */}
+    <>
+    <div className="leftSection">
+        <h2>Username: {userData.user.username}</h2>
+        <h2>ID: {userData.user.id}</h2>
+        <h2>Email: {userData.user.email}</h2>
+    </div>
 
-      {favoritos ? (
-            <ul>
+    <div className="rightSection">
+        {favoritos ? (
+            <div>
                 {favoritos.map(favorito => (
-                    <li key={favorito.id}>
-                        <p>Equipa: {favorito.id}</p>
-                        <p>Equipa: {favorito.nomeDaEquipa}</p>
-                        {/* Pass a function reference to onClick */}
-                        <button onClick={() => removerFavorito(favorito.id)}>
+                    <div className="ligaContainer" key={favorito.id}>
+                        <h3>Equipa: {favorito.nomeDaEquipa}</h3>
+                        <button className="removeButton" onClick={() => removerFavorito(favorito.id)}>
                             <i className="far fa-star"/>
                         </button>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         ) : (
             <p>Loading favoritos...</p>
         )}
     </div>
+</>
+
   );
 }
 

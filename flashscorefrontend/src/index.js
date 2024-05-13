@@ -11,6 +11,7 @@ import TesteRouter from './TesteRouter';
 import Login from './pages/Login';
 import Jogador from './pages/Jogador';
 import Favoritos from './pages/Favoritos';
+import RightSection from './Rightsection'
 // import Admin from './Admin'
 import AdminTwo from './pages/AdminTwo';
 import FormsToCreateTry from './javenhoaqui/FormsToCreateTry';

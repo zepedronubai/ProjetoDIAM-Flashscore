@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Profile.css'
 
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -44,12 +45,20 @@ function Profile() {
   }
 
   return (
-    <div>
-      <h1>Username: {userData.user.username}</h1>
-      <h1>Email: {userData.user.email}</h1>
-      {/* <p>Email: {userData.email}</p> */}
-      {/* Display other user information as needed */}
+    <div className="userDataContainer">
+    <h1 className="userDataTitle">User Information</h1>
+    <div className="userData">
+        <div className="userDataItem">
+            <span className="userDataLabel">Username:</span>
+            <span className="userDataValue">{userData.user.username}</span>
+        </div>
+        <div className="userDataItem">
+            <span className="userDataLabel">Email:</span>
+            <span className="userDataValue">{userData.user.email}</span>
+        </div>
+        {/* Add more user information items as needed */}
     </div>
+</div>
   );
 }
 

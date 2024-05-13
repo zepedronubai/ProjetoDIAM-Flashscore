@@ -1,0 +1,72 @@
+/* Add this CSS code to your existing stylesheet */
+
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Root variables */
+:root {
+    --cinzaescurissimo: #333;
+    --cinzaescuro: #515151;
+    --cinzaclaro: #A4A4A4;
+    --cinzabranco: #D9D9D9;
+}
+
+/* Left section styles */
+.leftSection {
+    background-color: var(--cinzaescuro);
+    border-radius: 6px;
+    min-width: 15vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+}
+
+.leftSection h2 {
+    color: var(--cinzabranco);
+}
+
+/* Right section styles */
+.rightSection {
+    color: var(--cinzabranco);
+    background-color: var(--cinzaescuro);
+    border-radius: 6px;
+    min-width: 15vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Favorite team container */
+.ligaContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cinzabranco);
+    border-radius: 6px;
+    margin: 5px 0;
+    width: 85%;
+    min-height: 7%;
+    height: auto;
+}
+
+.ligaContainer h3 {
+    margin: 0;
+}
+
+.removeButton {
+    background-color: var(--cinzaclaro);
+    color: var(--cinzaescuro);
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 10px;
+}

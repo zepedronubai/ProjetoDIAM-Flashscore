@@ -76,51 +76,7 @@ function Headerino(){
     };
 
 
-    /*const handleRegistration = async (e) => {
-    e.preventDefault();
-    const username = e.target.elements.username.value;
-    const email = e.target.elements.email.value;
-    const password = e.target.elements.password.value;
 
-
-    try {
-
-        const response = await axios.post('http://127.0.0.1:8000/register/', {
-            username: username,
-            email: email,
-            password: password
-        });
-
-        // Handle successful registration response
-        console.log('Registration successful:', response.data);
-        toggleRegisterForm();
-    } catch (error) {
-        // Handle registration error
-        console.error('Registration error:', error);
-        // You can display an error message to the user or perform other actions based on the error
-    }
-};
-
-    const fetchUserData = async () => {
-        setShowPagina(!showPagina);
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('Token not found');
-        }
-
-        const response = await axios.post('http://127.0.0.1:8000/user-info/',{token}, {
-
-        });
-
-        setUserData(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        // Handle authentication error or other errors
-      }
-
-}*/
     let searchBarShowing = 0
     
 

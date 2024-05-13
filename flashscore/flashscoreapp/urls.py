@@ -22,7 +22,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('user-info/', UserInfoView.as_view(), name='user-info'),
-    path('api/check-auth/', check_auth, name='check_auth'),
+
+    path('check_superuser/<str:username>/', views.check_superuser),
 
 
     path("", views.index, name='index'),
